@@ -58,6 +58,11 @@ int main()
         //     accounts[i].printDetail();
         // }
     }
+    else
+    {
+        std::cerr << "File \"" << infilename << "\" does not exist!\n";
+        return 0;
+    }
 
     in.close();
 
