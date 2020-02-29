@@ -42,8 +42,8 @@ unsigned long int factorial_loop(int n)
 
 unsigned long int factorial_recurse(int n)
 {
-    if (n == 1)
+    if (n == 0)
         return 1;
-    else
-        return n * factorial_recurse(n - 1);
+
+    return n * factorial_recurse(n - 1);
 }
