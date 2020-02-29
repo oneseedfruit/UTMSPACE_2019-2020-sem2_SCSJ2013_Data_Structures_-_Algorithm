@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <cstdint>
 #include "Account.hpp"
 
 Account getAccountFromAccNumber(const std::string &, const Account[], int);
