@@ -12,6 +12,7 @@
 // - Removed unused headers.
 // - Removed mixing C and C++ code.
 // - Fixed/added code to show time taken to run an algorithm.
+// - Added an array containing arrays of values for given worst case, average case, and best case.
 
 #include <iostream>
 #include <chrono>
@@ -64,20 +65,46 @@ void selectionSort(int data[], int n)
 
 int main()
 {
-    int saiz = 10;
+    const int size = 10;
     int x;
-    int data[]={ 12, 9, 20, 18, 7, 5, 15, 17, 11, 25 };   // Average Case
-    //int data[]= { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };   // Best Case
+    int data[3][size] = { 
+        { 20, 19, 18, 17, 16, 15, 14, 13, 12, 11 }, // Worst case
+        { 12, 9, 20, 18, 7, 5, 15, 17, 11, 25 }, // Average case
+        { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } // Best case
+    };
 
-    cout << "Content of the array before sort  :" ;
-    for (int x = 0; x < saiz; x++)
-    	cout << data[x] << "  ";
+    cout << "Content of the lists before sorting:\n\n" ;
+    for (int x = 0; x < 3; x++)
+    {       
+        cout << "Case " << x + 1 << ": ";
+        for (int y = 0; y < size; ++y) 
+        {
+    	    cout << data[x][y] << "  ";
+        }
+        cout << "\n";
+    }
 
-    selectionSort(data, saiz);
+    cout << "\n===============================================\n";
 
-    cout << "\n\nContent of the array after sort : ";
-    for (int x = 0; x < saiz; x++)
-    	cout << data[x] << "  ";
+    for (int i = 0; i < 3; ++i)
+    {
+        cout << "\n\n-----------------------------------------------\n";
+        cout << "Case " << i + 1 << ":";
+        selectionSort(data[i], size);        
+    }
+
+    cout << "\n\n\n===============================================\n";
+
+    cout << "\n\nContent of the lists after sorting:\n\n";
+    for (int x = 0; x < 3; x++)    
+    {        
+        cout << "Case " << x + 1 << ": ";
+        for (int y = 0; y < size; ++y) 
+        {
+    	    cout << data[x][y] << "  ";
+        }
+        cout << "\n";
+    }
 
     return 0;
 }
