@@ -1,0 +1,31 @@
+# Project: lab9
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = Account.o main.o
+LINKOBJ  = Account.o main.o
+LIBS     = -L"Z:/home/ranmaru90/Programs/dev-cpp/MinGW64/lib" -L"Z:/home/ranmaru90/Programs/dev-cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"Z:/home/ranmaru90/Programs/dev-cpp/MinGW64/include" -I"Z:/home/ranmaru90/Programs/dev-cpp/MinGW64/x86_64-w64-mingw32/include" -I"Z:/home/ranmaru90/Programs/dev-cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"Z:/home/ranmaru90/Programs/dev-cpp/MinGW64/include" -I"Z:/home/ranmaru90/Programs/dev-cpp/MinGW64/x86_64-w64-mingw32/include" -I"Z:/home/ranmaru90/Programs/dev-cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"Z:/home/ranmaru90/Programs/dev-cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = lab9.exe
+CXXFLAGS = $(CXXINCS) --std=c++11
+CFLAGS   = $(INCS) --std=c++11
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+Account.o: Account.cpp
+	$(CC) -c Account.cpp -o Account.o $(CFLAGS)
+
+main.o: main.cpp
+	$(CC) -c main.cpp -o main.o $(CFLAGS)
