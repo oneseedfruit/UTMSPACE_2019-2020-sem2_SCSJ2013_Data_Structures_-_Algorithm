@@ -11,7 +11,6 @@
 // - Fixed/added code to show time taken to run an algorithm.
 
 #include <iostream>
-#include <cstdio>
 #include <chrono>
 
 using namespace std;

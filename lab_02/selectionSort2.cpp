@@ -56,7 +56,7 @@ void selectionSort(int data[],int n)
     auto duration = chrono::duration_cast<chrono::microseconds>(after - before).count();
 
     cout << "\n\nTime taken to sort the data: " << duration << " microseconds";
-    cout << "\n\nTotal pass to sort 10 data using Selection Sort:  " << pass;
+    cout << "\n\nTotal pass to sort 10 data using selection sort:  " << pass;
     cout << "\nTotal number of data comparison:  " << compare;
     cout << "\nTotal number of data swapping :  " << swap;
 
