@@ -25,7 +25,7 @@ void swapData(int& x, int& y)
     y = temp;
 }  // end swap
 
-void selectionSort(int data[],int n)
+void selectionSort(int data[], int n)
 {  
     int p, largestIndex, last;
     int pass = 0, compare = 0, swap = 0;
@@ -42,13 +42,13 @@ void selectionSort(int data[],int n)
             //mencari data terbesar
             //dlm laluan dari bawah tts
             compare++;
-            if (data[p]>data[largestIndex] )
+            if (data[p] > data[largestIndex])
                 largestIndex = p;
         }
         // swap value at last with the largest value
        
          cout << "\nSwap between value " << data[last] << " and " << data[largestIndex];
-         swapData(data[last],data[largestIndex]);
+         swapData(data[last], data[largestIndex]);
          swap++;       
     }
 
@@ -66,14 +66,14 @@ int main()
 {
     int saiz = 10;
     int x;
-    int data[]={12,9,20,18,7,5,15,17,11,25};   // Average Case
-    //int data[]={11,12,13,14,15,16,17,18,19,20};   // Best Case
+    int data[]={ 12, 9, 20, 18, 7, 5, 15, 17, 11, 25 };   // Average Case
+    //int data[]= { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };   // Best Case
 
     cout << "Content of the array before sort  :" ;
     for (int x = 0; x < saiz; x++)
     	cout << data[x] << "  ";
 
-    selectionSort(data,saiz);
+    selectionSort(data, saiz);
 
     cout << "\n\nContent of the array after sort : ";
     for (int x = 0; x < saiz; x++)

@@ -15,7 +15,7 @@
 
 using namespace std;
 
-void BubbleSort(int data[],int listSize)
+void BubbleSort(int data[], int listSize)
 {
    int pass, compare = 0, swap = 0;
    int x ;
@@ -25,21 +25,21 @@ void BubbleSort(int data[],int listSize)
 
    auto before = chrono::high_resolution_clock::now();
 
-   for (pass = 1;pass < listSize; ++pass)
+   for (pass = 1; pass < listSize; ++pass)
    {
        cout << "\nPass " << pass;    //pindah nilai besar ke atas tatasusunan
 
        for (x = 0; x < listSize - pass; x++)
        {
            compare++ ;
-           if ( data[x]>data[x+1] )
+           if (data[x] > data[x + 1])
            {
                swap++;
                // Operasi penukaran unsur bersebelahan
                tempValue = data[x];
-               data[x] = data[x+1];
-               data[x+1] = tempValue;
-               cout << "\nSwap between: " << data[x] << " and " << data[x+1] << " in pass " << pass ;
+               data[x] = data[x + 1];
+               data[x + 1] = tempValue;
+               cout << "\nSwap between: " << data[x] << " and " << data[x + 1] << " in pass " << pass ;
            }
        }
    }
@@ -57,15 +57,15 @@ int main()
 {
     int size = 10;
     int x;
-    int data[] = {12,9,20,18,7,5,15,17,11,25}; // Average Case
+    int data[] = { 12, 9, 20, 18, 7, 5, 15, 17, 11, 25 }; // Average Case
 
     cout << "Content of the list before sorting: " ;
     for (int x = 0; x < size; x++)
     	cout << data[x] << "  ";
 
-    BubbleSort(data,size);
+    BubbleSort(data, size);
 
-    cout << "\n\nContent of the list after sorting  : ";
+    cout << "\n\nContent of the list after sorting: ";
     for (int x = 0; x < size; x++)
     	cout << data[x] << "  ";
 

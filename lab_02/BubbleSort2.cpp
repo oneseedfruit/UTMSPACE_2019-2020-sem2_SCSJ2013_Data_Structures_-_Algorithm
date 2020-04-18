@@ -27,10 +27,10 @@ void ImprovedBubbleSort(int data[], int n)
 
     auto before = chrono::high_resolution_clock::now();
 
-    for (pass = 1; (pass < n) && !sorted; ++pass)
+    for (pass = 1; pass < n && !sorted; ++pass)
     {
         sorted = true;  // assume sorted
-        for (int x = 0; x < n-pass; ++x)
+        for (int x = 0; x < n - pass; ++x)
         {
             compare++;
 
@@ -58,13 +58,13 @@ int main()
 {
     int size = 10;
     int x;
-    int data[]={12,9,20,18,7,5,15,17,11,25};  // Average Case
+    int data[] ={ 12, 9, 20, 18, 7, 5, 15, 17, 11, 25 };  // Average Case
 
     cout << "Content of the array before sort  :" ;
     for (int x = 0; x < size; x++)
         cout << data[x] << "  ";
 
-    ImprovedBubbleSort(data,size);
+    ImprovedBubbleSort(data, size);
 
     cout << "\n\nContent of the array after sort  : ";
     for (int x = 0; x < size; x++)

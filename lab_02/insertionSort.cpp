@@ -39,11 +39,11 @@ void isihanSelitan(int data[],int n)
             sorted = true;
             banding++;
 
-            if(data[titik_selitan-1] > item)
+            if(data[titik_selitan - 1] > item)
             {
                 //menyediakan ruangan untuk selitan
-                cout << "\nSwap item "<< data[titik_selitan] << "and " << data[titik_selitan-1];
-                data[titik_selitan]= data[titik_selitan-1];
+                cout << "\nSwap item "<< data[titik_selitan] << "and " << data[titik_selitan - 1];
+                data[titik_selitan] = data[titik_selitan - 1];
                 titik_selitan--;
                 alih++;
                 sorted = false;
@@ -60,16 +60,16 @@ void isihanSelitan(int data[],int n)
     cout << "\n\nTime taken to sort the data: " << duration << " microseconds";
     cout << "\n\nTotal pass to sort 10 data using insertion sort:  " << (laluan - 1);
     cout << "\nTotal number of data comparison:  " << banding;
-    cout << "\nTotal number of data swapping :  " << alih;
+    cout << "\nTotal number of data swapping:  " << alih;
 }  // end insertionSort()
 
 int main()
 {
     int saiz = 10;
     int x;
-    //int data[]={12,9,20,18,7,5,15,17,11,25};  // average case
-    int data[]={1,2,3,4,5,6,7,8,9,10};     // best case
-    //int data[] = {20,19,18,17,16,15,14,13,12,11};  // worse case
+    //int data[]={ 12, 9, 20, 18, 7, 5, 15, 17, 11, 25 };  // average case
+    int data[]= { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };     // best case
+    //int data[] = { 20, 19, 18, 17, 16, 15, 14, 13, 12, 11 };  // worse case
 
     cout << "Content of the array before sort  :" ;
     for (int x = 0; x < saiz; x++)
@@ -77,7 +77,7 @@ int main()
 
     isihanSelitan(data,saiz);
 
-    cout << "\n\nContent of the array after sort : ";
+    cout << "\n\nContent of the array after sort :";
     for (int x = 0; x < saiz; x++)
     	cout << data[x] << "  ";
     
