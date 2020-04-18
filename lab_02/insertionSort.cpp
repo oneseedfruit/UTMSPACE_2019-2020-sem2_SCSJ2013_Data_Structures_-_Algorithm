@@ -9,6 +9,9 @@
 // Reference : Data Structure & Problem Solving with C++
 // Frank M. Carrano, Pearson International Edition
 
+// Modified by Randy Tan Shaoxian
+// - Removed mixing C and C++ code.
+// - Fixed/added code to show time taken to run an algorithm.
 
 #include <iostream>
 #include <chrono>
