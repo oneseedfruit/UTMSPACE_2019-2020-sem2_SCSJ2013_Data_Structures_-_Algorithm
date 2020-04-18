@@ -6,6 +6,7 @@
 // 11 April 2020
 
 // Modified by Randy Tan Shaoxian
+// - Removed unused headers.
 // - Removed mixing C and C++ code.
 // - Fixed/added code to show time taken to run an algorithm.
 
