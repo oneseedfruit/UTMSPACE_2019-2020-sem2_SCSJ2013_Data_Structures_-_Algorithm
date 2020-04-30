@@ -118,7 +118,6 @@ void swap(Customer &cust1, Customer &cust2) // Swap function
 
 void sortByParkingHours(Customer cust[], int count) // Improved bubble sort
 {
-    int temp;
     bool isSorted = false;
 
     for (int i = 1; i < count && !isSorted; ++i)
