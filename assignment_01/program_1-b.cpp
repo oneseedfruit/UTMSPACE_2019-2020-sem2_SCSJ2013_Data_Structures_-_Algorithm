@@ -83,9 +83,14 @@ void Customer::calcParkingCharges()
     }
 }
 
+// (FOR QUESTION e.)Function prototype to sort customer array by parking hours, so can be called in displayInfo()
+void sortByParkingHours(Customer[], int count = 20);
+
 // d.
 void displayInfo(Customer cust[], int count = 20)
 {
+    sortByParkingHours(cust, count); // (FOR QUESTION e.)
+
     for (int i = 0; i < count; ++i)
     {
         std::cout << "Welcome " << cust[i].getName() << ", You are ";
@@ -100,6 +105,34 @@ void displayInfo(Customer cust[], int count = 20)
         std::cout << "Your Parking Payment: Rm " << cust[i].getCharged()
                   << "\n";
         std::cout << "\n";
+    }
+}
+
+// e.
+void swap(Customer &cust1, Customer &cust2) // Swap function
+{
+    Customer temp = cust1;
+    cust1 = cust2;
+    cust2 = temp;
+}
+
+void sortByParkingHours(Customer cust[], int count) // Improved bubble sort
+{
+    int temp;
+    bool isSorted = false;
+
+    for (int i = 1; i < count && !isSorted; ++i)
+    {
+        isSorted = true;
+
+        for (int j = 0; j < count - i; ++j)
+        {
+            if (cust[j].getHour() > cust[j + 1].getHour())
+            {
+                swap(cust[j], cust[j + 1]);
+                isSorted = false;
+            }
+        }
     }
 }
 
