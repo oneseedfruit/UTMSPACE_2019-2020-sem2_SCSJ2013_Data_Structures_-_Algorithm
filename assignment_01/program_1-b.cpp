@@ -1,6 +1,5 @@
 #include <iostream>
 #include <iomanip>
-#include <algorithm>
 #include <string>
 #include <fstream>
 
@@ -233,7 +232,7 @@ void displaySearchByNameResult(std::string name, const Customer cust[], int coun
     }
 }
 
-int main()
+int main() // (MODIFIED) Changed to return int to follow C++ convention
 {
     Customer cust[NUMBER_OF_CUSTOMERS]; // (MODIFIED) Changed 20 to a constant NUMBER_OF_CUSTOMERS
 
@@ -248,5 +247,5 @@ int main()
     std::getline(std::cin, name);
     displaySearchByNameResult(name, cust);
 
-    return 0;
+    return 0; // (MODIFIED) Changed to return 0 to follow C++ convention
 }
