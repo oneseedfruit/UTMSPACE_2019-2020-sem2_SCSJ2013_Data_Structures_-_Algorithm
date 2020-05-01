@@ -102,8 +102,7 @@ void displayInfoOfOneCustomer(const Customer &cust) // Function to display info 
                   "parking more than 20 hours\n");
     std::cout << "Your Parking duration: " << cust.getHour() << " hours\n";
     std::cout << std::fixed << std::setprecision(2);
-    std::cout << "Your Parking Payment: Rm " << cust.getCharged() << "\n";
-    std::cout << "\n";
+    std::cout << "Your Parking Payment: Rm " << cust.getCharged() << "\n\n";
 }
 
 // Function to display info about all customers in the array
@@ -177,6 +176,36 @@ void copyArrayOfCustomers(const Customer custFrom[], Customer custTo[], int coun
     }
 }
 
+// Sequential search, compare integers
+int searchIndexByParkingHours(const Customer cust[], int hours, Customer out[], int count = NUMBER_OF_CUSTOMERS)
+{
+    // Duplicate the array to be sorted before searching, so that the original array stays unmodified (if it wasn't already sorted before)
+    Customer temp[count];
+    copyArrayOfCustomers(cust, temp);
+    sortByParkingHours(temp, count);
+
+    int searchIndex = -1;
+
+    for (int i = 0; i < count; ++i)
+    {
+        if (hours < temp[i].getHour())
+        {
+            break;
+        }
+        else if (hours == temp[i].getHour())
+        {
+            searchIndex = i;
+            break;
+        }
+    }
+
+    // Copy duplicated array to output array so the result can be queried from outside the function 
+    // without affecting the original array (if it wasn't already sorted before)
+    copyArrayOfCustomers(temp, out);
+
+    return searchIndex;
+}
+
 // Binary search, compare strings
 int searchIndexByName(const Customer cust[], const std::string &name, Customer out[], int count = NUMBER_OF_CUSTOMERS)
 {
@@ -211,14 +240,44 @@ int searchIndexByName(const Customer cust[], const std::string &name, Customer o
         }
     }
 
-    // Copy dupplicated array to output array so the result can be queried from outside the function 
+    // Copy duplicated array to output array so the result can be queried from outside the function
     // without affecting the original array (if it wasn't already sorted before)
     copyArrayOfCustomers(temp, out);
 
     return pos;
 }
 
-void displaySearchByNameResult(std::string name, const Customer cust[], int count = NUMBER_OF_CUSTOMERS)
+void displaySearchResult(int hours, const Customer cust[], int count = NUMBER_OF_CUSTOMERS)
+{
+    Customer sortedCust[count];
+    int searchIndex = searchIndexByParkingHours(cust, hours, sortedCust, count);
+
+    if (searchIndex > -1) // Only display result if exact match is found
+    {
+        Customer result = sortedCust[searchIndex];
+
+        std::cout << "\nSearch result(s):\n\n";
+        std::cout << "=====================================================\n";
+
+        for (int i = 0, j = 0; i < count; ++i)
+        {
+            if (cust[i].getHour() == result.getHour())
+            {
+                std::cout << "Result #" << ++j << ":\n";
+                std::cout << "----------\n";
+                displayInfoOfOneCustomer(cust[i]);
+            }
+        }
+
+        std::cout << "=====================================================\n\n";
+    }
+    else
+    {
+        std::cout << "\nNo customer in the list has parked for " << hours << " hours!\n\n";
+    }
+}
+
+void displaySearchResult(std::string name, const Customer cust[], int count = NUMBER_OF_CUSTOMERS)
 {
     Customer sortedCust[count];
     int searchIndex = searchIndexByName(cust, name, sortedCust, count);
@@ -226,9 +285,15 @@ void displaySearchByNameResult(std::string name, const Customer cust[], int coun
     if (searchIndex > -1) // Only display result if exact match is found
     {
         Customer result = sortedCust[searchIndex];
-        std::cout << "searchIndex: " << searchIndex;
-        std::cout << "\nResults:\n";
+
+        std::cout << "\nSearch result:\n\n";
+        std::cout << "=====================================================\n";
         displayInfoOfOneCustomer(result);
+        std::cout << "=====================================================\n\n";
+    }
+    else
+    {
+        std::cout << "\nNo customer in the list is named exactly \"" << name << "\"!\n\n";
     }
 }
 
@@ -242,10 +307,19 @@ int main() // (MODIFIED) Changed to return int to follow C++ convention
         cust[i].calcParkingCharges();
     }
 
-    std::string name;
-    std::cout << "Search by name: ";
-    std::getline(std::cin, name);
-    displaySearchByNameResult(name, cust);
+    // std::string name;
+    // std::cout << "Search by name: ";
+    // std::getline(std::cin, name);
+    // displaySearchResult(name, cust);
+
+    // int hours;
+    // std::cout << "Search by parking hours: ";
+    // std::cin >> hours;
+    // displaySearchResult(hours, cust);
+
+    // sortByParkingHours(cust);
+    // sortByName(cust);
+    // displayInfo(cust);
 
     return 0; // (MODIFIED) Changed to return 0 to follow C++ convention
 }
