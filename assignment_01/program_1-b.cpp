@@ -1,3 +1,27 @@
+// Universiti Teknologi Malaysia
+// Semester 2 2019/2020
+// ----------------------------------------------------------------------------
+// SCSJ2013 Data Structures & Algorithms
+// Assignment 1
+// Lecturer: Madam Nor Bahiah Binti Ahmad
+// ----------------------------------------------------------------------------
+// Completed in a group of 2 by:
+//
+// Charlene Ng Andrew SX180355CSJS04
+// Randy Tan Shaoxian SX180357CSJS04
+// ----------------------------------------------------------------------------
+// Files should be in a set, consisting of: 
+//
+// i) a_uml_class_diagram.png (answer for question a.)
+// ii) program_1-b.cpp (this source file)
+// iii) customer (input data to Program 1-B)
+// ----------------------------------------------------------------------------
+// Our answer for question a. is in the accompanying file named "a_uml_class_diagram.png"
+// This source file contains our answers to questions b. to g.
+// This source file can be compiled with a C++98 compiler (no need for C++11)
+// ----------------------------------------------------------------------------
+// Thank you Madam for this fun assignment! We had a great time doing it! :D
+
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -247,6 +271,7 @@ int searchIndexByName(const Customer cust[], const std::string &name, Customer o
     return pos;
 }
 
+// Overloaded displaySearchResult() to show result from searchIndexByParkingHours()
 void displaySearchResult(int hours, const Customer cust[], int count = NUMBER_OF_CUSTOMERS)
 {
     Customer sortedCust[count];
@@ -277,6 +302,7 @@ void displaySearchResult(int hours, const Customer cust[], int count = NUMBER_OF
     }
 }
 
+// Overloaded displaySearchResult() to show result from searchIndexName()
 void displaySearchResult(std::string name, const Customer cust[], int count = NUMBER_OF_CUSTOMERS)
 {
     Customer sortedCust[count];
@@ -307,19 +333,104 @@ int main() // (MODIFIED) Changed to return int to follow C++ convention
         cust[i].calcParkingCharges();
     }
 
-    // std::string name;
-    // std::cout << "Search by name: ";
-    // std::getline(std::cin, name);
-    // displaySearchResult(name, cust);
+    // ========================================
+    // g. Code for a simple menu
+    // ========================================
+    int option = 0;
+    int optionSort = 0;
+    int optionSearch = 0;
 
-    // int hours;
-    // std::cout << "Search by parking hours: ";
-    // std::cin >> hours;
-    // displaySearchResult(hours, cust);
+    while (option != 4)
+    {
+        std::cout << "Choose an option:\n";
+        std::cout << "1. Sort\n";
+        std::cout << "2. Search\n";
+        std::cout << "3. Display\n";
+        std::cout << "4. Exit\n";
 
-    // sortByParkingHours(cust);
-    // sortByName(cust);
-    // displayInfo(cust);
+        std::cin >> option;
+        std::cout << "\n";
+
+        switch (option)
+        {
+            case 1:                
+                while (optionSort != 3)
+                {
+                    std::cout << "=> 1. Sort by parking hours (ascending)\n";
+                    std::cout << "=> 2. Sort by customer names (ascending)\n";
+                    std::cout << "=> 3. Back\n";
+
+                    std::cin >> optionSort;
+
+                    switch (optionSort)
+                    {
+                        case 1:
+                            sortByParkingHours(cust);
+                            std::cout << "==> Sorted successfully by parking hours (ascending)!\n";
+                            break;
+
+                        case 2:
+                            sortByName(cust);
+                            std::cout << "==> Sorted successfully by customer names (ascending)!\n";
+                            break;
+                    }
+
+                    std::cout << "\n";
+                }
+
+                optionSort = 0;
+
+                break;
+            
+            case 2:
+                while (optionSearch != 3)
+                {
+                    std::cout << "=> 1. Search by parking hours\n";
+                    std::cout << "=> 2. Search by customer names (exact match, case-sensitive)\n";
+                    std::cout << "=> 3. Back\n";
+
+                    std::cin >> optionSearch;
+
+                    switch (optionSearch)
+                    {
+                        case 1:
+                            int hours;
+                            std::cout << "==> Search by parking hours: ";
+                            std::cin >> hours;
+                            displaySearchResult(hours, cust);
+                            break;
+                        
+                        case 2:
+                            std::string name;
+                            std::cout << "==> Search by name: ";
+                            std::cin.ignore();
+                            std::getline(std::cin, name);
+                            displaySearchResult(name, cust);
+                            break;
+                    }
+
+                    std::cout << "\n";
+                }
+
+                optionSearch = 0;
+
+                break;
+            
+            case 3:
+                std::cout << "=> Displaying all customers:\n\n";
+                std::cout << "=====================================================\n";
+                
+                displayInfo(cust);
+
+                std::cout << "=====================================================\n\n";
+
+                break;
+
+            case 4:
+                std::cout << "Program exited successfully!\n";
+                break;
+        }
+    }
 
     return 0; // (MODIFIED) Changed to return 0 to follow C++ convention
 }
