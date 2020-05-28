@@ -1,0 +1,125 @@
+#include <iostream> 
+#include <conio.h> 
+
+using namespace std; 
+
+class Node {
+public:
+	double data;	// data
+	Node*	next;		// pointer to next node
+};
+
+class List {
+public:
+	List(void) { head = NULL; }	// constructor
+//	~List(void);				// destructor
+
+	bool IsEmpty() { return head == NULL; }
+	Node* InsertNode(double x);	
+	int FindNode(double x);	
+	int DeleteNode(double x);
+	void DisplayList(void);
+private:
+	Node* head;
+};
+
+Node* List::InsertNode(double x) {
+		
+	int currIndex	=	0;
+	Node* currNode	=	head;
+	Node* prevNode	=	NULL;
+	while (currNode != NULL  && x > currNode->data) {
+		prevNode = currNode;
+               currNode = currNode->next;
+		currIndex++;
+	}
+		
+	Node* newNode	=	new	Node;
+	newNode->data	=	x;	
+	if (currIndex == 0) {
+		newNode->next	=	head;
+		head		=	newNode;
+		 cout << "Insert " << x << " at empty or front List. " << endl;
+	}
+	else {
+		newNode->next	=	prevNode->next;
+		prevNode->next	=	newNode;
+		cout << "Insert " << x << " at middle or back List " << endl;
+	}
+	return newNode;
+}
+
+void List::DisplayList()
+{
+   int num		=	0;
+   Node* currNode	=	head;
+    cout << "Content of the list: " << endl;
+   while (currNode != NULL){
+	cout << currNode->data << endl;
+	currNode	=	currNode->next;
+	num++;
+   }
+   cout << "Number of nodes in the list: " << num << endl;
+}
+
+int List::FindNode(double x) {
+	Node* currNode	=	head;
+	int currIndex	=	1;
+	while (currNode && currNode->data != x) {
+		currNode	=	currNode->next;
+		currIndex++;
+	}
+	if (currNode) 
+		return currIndex;
+	else
+		return 0;
+}
+
+int List::DeleteNode(double x) {
+	Node* prevNode	=	NULL;
+	Node* currNode	=	head;
+	int currIndex	=	1;
+	while (currNode && currNode->data != x) {
+		prevNode	=	currNode;
+		currNode	=	currNode->next;
+		currIndex++;
+	}
+	if (currNode) {
+		if (prevNode) {
+			prevNode->next	=	currNode->next;
+			delete currNode;
+			currNode = NULL;
+			cout << "Deletion of node " << x << "is done at the back or middle of the List " << endl;
+		}
+		else {
+			head		=	currNode->next;
+			delete currNode;
+			currNode = NULL;
+			cout << "Deletion of node " << x << "is done at front List " << endl;
+		}
+		return currIndex;
+	}
+	return 0;
+}
+
+
+int main(void)
+{ List aList;
+  if (aList.IsEmpty())
+       cout << "The list is currently empty \n";
+       else 
+       aList.DisplayList();
+    aList.InsertNode(10) ;
+    aList.InsertNode(5);
+    aList.InsertNode(15);
+    aList.InsertNode(12);
+	aList.DisplayList();  
+	if(aList.FindNode(5.0) > 0)	cout << "5.0 found" << endl;	
+	else				cout << "5.0 not found" << endl;
+	if(aList.FindNode(4.5) > 0) cout << "4.5 found" << endl;
+	else				cout << "4.5 not found" << endl;
+	aList.DeleteNode(10.0);
+	aList.DisplayList();
+
+    return 0;
+}
