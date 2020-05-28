@@ -16,8 +16,8 @@ public:
 
 	bool IsEmpty() { return head == NULL; }
 	Node* InsertNode(double x);	
-	int FindNode(double x);	
-	int DeleteNode(double x);
+	int FindNextNodeWith(double x);	
+	int DeleteNextNodeWith(double x);
 	void DisplayList(void);
 private:
 	Node* head;
@@ -62,7 +62,7 @@ void List::DisplayList()
    cout << "Number of nodes in the list: " << num << endl;
 }
 
-int List::FindNode(double x) {
+int List::FindNextNodeWith(double x) {
 	Node* currNode	=	head;
 	int currIndex	=	1;
 	while (currNode && currNode->data != x) {
@@ -75,7 +75,7 @@ int List::FindNode(double x) {
 		return 0;
 }
 
-int List::DeleteNode(double x) {
+int List::DeleteNextNodeWith(double x) {
 	Node* prevNode	=	NULL;
 	Node* currNode	=	head;
 	int currIndex	=	1;
@@ -114,11 +114,11 @@ int main(void)
     aList.InsertNode(15);
     aList.InsertNode(12);
 	aList.DisplayList();  
-	if(aList.FindNode(5.0) > 0)	cout << "5.0 found" << endl;	
+	if(aList.FindNextNodeWith(5.0) > 0)	cout << "5.0 found" << endl;	
 	else				cout << "5.0 not found" << endl;
-	if(aList.FindNode(4.5) > 0) cout << "4.5 found" << endl;
+	if(aList.FindNextNodeWith(4.5) > 0) cout << "4.5 found" << endl;
 	else				cout << "4.5 not found" << endl;
-	aList.DeleteNode(10.0);
+	aList.DeleteNextNodeWith(10.0);
 	aList.DisplayList();
 
     return 0;

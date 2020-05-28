@@ -12,11 +12,12 @@ public:
 	List(void); // constructor
 //	~List(void); // destructor
 
-	bool IsEmpty();
-	Node *InsertNode(std::string, std::string, std::string, float);	
-    int FindNode(float);
-	int FindNode(std::string);    
-	int DeleteNode(std::string);
+	bool IsEmpty() const;
+	Node *InsertNode(std::string, std::string, std::string, float);
+	Node *GetNextNodeFromIndex(int) const;
+    int FindNextNodeWith(float);
+	int FindNextNodeWith(std::string);    
+	int DeleteNextNodeWith(std::string);
 	void DisplayList(void);
 
 private:

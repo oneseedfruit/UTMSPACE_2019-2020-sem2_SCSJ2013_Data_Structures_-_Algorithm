@@ -18,29 +18,42 @@
 //
 // Charlene Ng Andrew SX180355CSJS04
 // Randy Tan Shaoxian SX180357CSJS04
+
 // ----------------------------------------------------------------------------
 // Files should be in a set, consisting of: 
 //
-// i) linkedList.cpp___ (given linked list program, renamed to cpp___ to avoid it
-//                       from being targeted for compilation because we used the 
-//                       "*" wildcard in our compilation command)
+//      1. linkedList.cpp___ (given linked list program, renamed to cpp___ to 
+//                            avoid it from being targeted for compilation 
+//                            because we used the "*" wildcard in our 
+//                            compilation command)
 //
 // our modified program (all the following files constitute one program):
 //
-// ii) Node.hpp
-// iii) List.hpp
-// iv) List.cpp
-// v) StudentInfo.hpp
-// vi) main.cpp
+//      2. Node.hpp
+//      3. List.hpp
+//      4. List.cpp
+//      5. StudentInfo.hpp
+//      6. main.cpp
+//
+// Our modifications include but not limited to:
+//
+//      1. Split the code into multiple files for easier management and
+//         readability.
+//      2. Changed the "currIndex" variable to be zeroth-indexed. We are not 
+//         used to starting the count from 1, so all "currIndex" start from 0.
+//      3. Renamed some functions for better readability.
+//      4. Reused the find node functions in the delete function.
+//
 // ----------------------------------------------------------------------------
 // The source files can be compiled with a C++98 compiler (no need for C++11).
-// Files ii, iii, iv, v, and vi should be compiled together.
+// Files 2, 3, 4, 5, and 6 should be compiled together as one program.
 // 
 // Compiled using g++ in Manjaro Linux using the following command:
 //
-// g++ --std=c++98 *.cpp -o linkedList
+//              g++ --std=c++98 *.cpp -o linkedList
 //
 // to output the executable file "linkedList"
+//
 // ----------------------------------------------------------------------------
 // Thank you Madam for this fun assignment! We had a great time doing it! :D
 
@@ -60,9 +73,25 @@ int main(void)
 
     aList.DisplayList();
 
-    aList.DeleteNode("SX180357CSJS04");
+    // aList.DeleteNextNodeWith("SX180357CSJS04");
+    // aList.DeleteNextNodeWith("SX180355CSJS04");
+    aList.DeleteNextNodeWith("SX200357BLAS04");
+    // aList.DeleteNextNodeWith("SX200355VORA04");
 
     aList.DisplayList();
+
+
+    for (int i = 0; i < 5; ++i)
+    {   
+        if (aList.GetNextNodeFromIndex(i) != NULL)
+            cout << "Node " << i << " is " << aList.GetNextNodeFromIndex(i)->data.matric << "\n";
+    }
+
+    cout << "\n";
+    cout << "\"SX180357CSJS04\" found at " << aList.FindNextNodeWith("SX180357CSJS04") << "!\n";
+    cout << "\"SX180355CSJS04\" found at " << aList.FindNextNodeWith("SX180355CSJS04") << "!\n";
+    cout << "\"SX200357BLAS04\" found at " << aList.FindNextNodeWith("SX200357BLAS04") << "!\n";
+    cout << "\"SX200355VORA04\" found at " << aList.FindNextNodeWith("SX200355VORA04") << "!\n";
 
     return 0;
 }

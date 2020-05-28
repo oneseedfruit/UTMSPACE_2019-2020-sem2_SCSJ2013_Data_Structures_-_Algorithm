@@ -7,7 +7,7 @@ List::List()
     head = NULL;
 }
 
-bool List::IsEmpty()
+bool List::IsEmpty() const
 {
     return head == NULL; 
 }
@@ -60,6 +60,26 @@ Node* List::InsertNode(std::string name, std::string matric, std::string program
 	return newNode;
 }
 
+Node *List::GetNextNodeFromIndex(int index) const
+{
+	Node *currNode = head;
+	int currIndex = 0;
+
+	while (currNode && currIndex != index) 
+	{
+		currNode = currNode->next;
+		currIndex++;
+	}
+	if (currNode != NULL)
+	{
+		return currNode;
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
 void List::DisplayList()
 {
 	int num = 0;
@@ -86,10 +106,10 @@ void List::DisplayList()
     std::cout << "\n=================================================\n\n";
 }
 
-int List::FindNode(float x)
+int List::FindNextNodeWith(float x)
 {
 	Node *currNode = head;
-	int currIndex =	1;
+	int currIndex =	0;
 
 	while (currNode && currNode->data.cgpa != x) 
 	{
@@ -103,17 +123,17 @@ int List::FindNode(float x)
 	}
 	else
 	{
-		return 0;
+		return -1;
 	}
 }
 
-int List::FindNode(std::string matric)
+int List::FindNextNodeWith(std::string query)
 {
     Node *currNode = head;
-	int currIndex =	1;
+	int currIndex =	0;
 
-	while (currNode &&             
-            currNode->data.matric != matric)
+	while (currNode &&            
+			currNode->data.matric != query)
 	{
 		currNode = currNode->next;
 		currIndex++;
@@ -125,22 +145,19 @@ int List::FindNode(std::string matric)
 	}
 	else
 	{
-		return 0;
+		return -1;
 	}
 }
 
-int List::DeleteNode(std::string matric) 
-{
+int List::DeleteNextNodeWith(std::string matric)
+{	
 	Node *prevNode = NULL;
-	Node *currNode = head;
-	int currIndex =	1;
+	int currIndex =	FindNextNodeWith(matric);
+	Node *currNode = GetNextNodeFromIndex(currIndex);
 
-	while (currNode && 
-        currNode->data.matric != matric) 
+	if (currIndex > 0)
 	{
-		prevNode = currNode;
-		currNode = currNode->next;
-		currIndex++;
+		prevNode = GetNextNodeFromIndex(currIndex - 1);
 	}
 
 	if (currNode) 
@@ -158,7 +175,7 @@ int List::DeleteNode(std::string matric)
 			delete currNode;
 			currNode = NULL;
         }
-        else 
+        else
 		{
 			head = currNode->next;
             std::cout << "\n\t>>> Operation [DELETE] at the front of the list:\n";
