@@ -1,5 +1,6 @@
 sketches/
 .ccls-cache/
+.vscode/
 
 # Prerequisites
 *.d
