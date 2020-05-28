@@ -15,10 +15,10 @@ public:
 	bool IsEmpty() const;
 	Node *InsertNode(std::string, std::string, std::string, float);
 	Node *GetNextNodeFromIndex(int) const;
-    int FindNextNodeWith(float);
-	int FindNextNodeWith(std::string);    
+    int FindNextNodeWith(float) const;
+	int FindNextNodeWith(std::string) const;    
 	int DeleteNextNodeWith(std::string);
-	void DisplayList(void);
+	void DisplayList(void) const;
 
 private:
 	Node *head;

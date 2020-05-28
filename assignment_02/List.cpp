@@ -18,15 +18,14 @@ Node* List::InsertNode(std::string name, std::string matric, std::string program
 	Node *currNode = head;
 	Node *prevNode = NULL;
 	
-	while (currNode != NULL && 
-           matric.compare(currNode->data.matric) > 0)
+	while (currNode != NULL && matric.compare(currNode->data.matric) > 0)
 	{
 		prevNode = currNode;
 		currNode = currNode->next;
 		currIndex++;
 	}
 
-	Node *newNode = new Node;
+	Node *newNode = new Node;	
     newNode->data.name = name;
     newNode->data.matric = matric;
     newNode->data.program = program;
@@ -37,24 +36,14 @@ Node* List::InsertNode(std::string name, std::string matric, std::string program
 		newNode->next = head;
 		head = newNode;
 		std::cout << "\n\t>>> Operation [INSERT] at empty or front of the list:\n";
-        std::cout << "\t>>> ---------------------------------------------\n";
-        std::cout << "\t>>> Student name: " << name << "\n";
-        std::cout << "\t>>> Matric number: " << matric << "\n";
-        std::cout << "\t>>> Program: " << program << "\n";
-        std::cout << "\t>>> CGPA: " << cgpa << "\n";
-        std::cout << "\t>>> ---------------------------------------------\n";
+        newNode->DisplayNode(1);
 	}
 	else 
 	{
 		newNode->next = prevNode->next;
 		prevNode->next = newNode;
 		std::cout << "\n\t>>> Operation [INSERT] at middle or back of the list:\n";
-        std::cout << "\t>>> ---------------------------------------------\n";
-        std::cout << "\t>>> Student name: " << name << "\n";
-        std::cout << "\t>>> Matric number: " << matric << "\n";
-        std::cout << "\t>>> Program: " << program << "\n";
-        std::cout << "\t>>> CGPA: " << cgpa << "\n";
-        std::cout << "\t>>> ---------------------------------------------\n";
+        newNode->DisplayNode(1);
 	}
 
 	return newNode;
@@ -62,25 +51,19 @@ Node* List::InsertNode(std::string name, std::string matric, std::string program
 
 Node *List::GetNextNodeFromIndex(int index) const
 {
-	Node *currNode = head;
 	int currIndex = 0;
+	Node *currNode = head;
 
 	while (currNode && currIndex != index) 
 	{
 		currNode = currNode->next;
 		currIndex++;
 	}
-	if (currNode != NULL)
-	{
-		return currNode;
-	}
-	else
-	{
-		return NULL;
-	}
+
+	return currNode != NULL ? currNode : NULL;	
 }
 
-void List::DisplayList()
+void List::DisplayList() const
 {
 	int num = 0;
 	Node *currNode = head;
@@ -89,15 +72,8 @@ void List::DisplayList()
 	std::cout << "Content of the list:\n";
 
 	while (currNode != NULL)
-	{	
-        std::cout << "\n---------------------------------------------\n";
-        std::cout << "| Node " << num + 1 << ":\n|\n";
-		std::cout << "| Student name: " << currNode->data.name << "\n";
-        std::cout << "| Matric number: " << currNode->data.matric << "\n";
-        std::cout << "| Program: " << currNode->data.program << "\n";
-        std::cout << std::setprecision(2) << std::fixed;
-        std::cout << "| CGPA: " << currNode->data.cgpa;
-        std::cout << "\n---------------------------------------------\n";
+	{			
+        currNode->DisplayNode();
 		currNode = currNode->next;
 		num++;
 	}
@@ -106,88 +82,56 @@ void List::DisplayList()
     std::cout << "\n=================================================\n\n";
 }
 
-int List::FindNextNodeWith(float x)
+int List::FindNextNodeWith(float CGPA) const
 {
-	Node *currNode = head;
 	int currIndex =	0;
+	Node *currNode = head;
 
-	while (currNode && currNode->data.cgpa != x) 
+	while (currNode && currNode->data.cgpa != CGPA) 
 	{
 		currNode = currNode->next;
 		currIndex++;
 	}
 
-	if (currNode)
-	{
-		return currIndex;
-	}
-	else
-	{
-		return -1;
-	}
+	return currNode ? currIndex : -1;
 }
 
-int List::FindNextNodeWith(std::string query)
+int List::FindNextNodeWith(std::string query) const
 {
-    Node *currNode = head;
 	int currIndex =	0;
+    Node *currNode = head;
 
-	while (currNode &&            
-			currNode->data.matric != query)
+	while (currNode && currNode->data.matric != query)
 	{
 		currNode = currNode->next;
 		currIndex++;
 	}
-
-	if (currNode)
-	{
-		return currIndex;
-	}
-	else
-	{
-		return -1;
-	}
+	
+	return currNode ? currIndex : -1;
 }
 
 int List::DeleteNextNodeWith(std::string matric)
 {	
-	Node *prevNode = NULL;
 	int currIndex =	FindNextNodeWith(matric);
+	Node *prevNode = currIndex > 0 ? GetNextNodeFromIndex(currIndex - 1) : NULL;
 	Node *currNode = GetNextNodeFromIndex(currIndex);
-
-	if (currIndex > 0)
-	{
-		prevNode = GetNextNodeFromIndex(currIndex - 1);
-	}
 
 	if (currNode) 
 	{
-		if (prevNode) 
+		if (prevNode)
 		{
 			prevNode->next = currNode->next;
-			std::cout << "\n\t>>> Operation [DELETE] at the back or middle of the list:\n";
-            std::cout << "\t>>> ---------------------------------------------\n";
-            std::cout << "\t>>> Student name: " << currNode->data.name << "\n";
-            std::cout << "\t>>> Matric number: " << currNode->data.matric << "\n";
-            std::cout << "\t>>> Program: " << currNode->data.program << "\n";
-            std::cout << "\t>>> CGPA: " << currNode->data.cgpa << "\n";
-            std::cout << "\t>>> ---------------------------------------------\n";
-			delete currNode;
-			currNode = NULL;
+			std::cout << "\n\t>>> Operation [DELETE] at the back or middle of the list:\n";            
         }
         else
 		{
 			head = currNode->next;
             std::cout << "\n\t>>> Operation [DELETE] at the front of the list:\n";
-            std::cout << "\t>>> ---------------------------------------------\n";
-            std::cout << "\t>>> Student name: " << currNode->data.name << "\n";
-            std::cout << "\t>>> Matric number: " << currNode->data.matric << "\n";
-            std::cout << "\t>>> Program: " << currNode->data.program << "\n";
-            std::cout << "\t>>> CGPA: " << currNode->data.cgpa << "\n";
-            std::cout << "\t>>> ---------------------------------------------\n";
-			delete currNode;
-			currNode = NULL;			
 		}
+
+		currNode->DisplayNode(1);
+		delete currNode;
+		currNode = NULL;
 
 		return currIndex;
 	}

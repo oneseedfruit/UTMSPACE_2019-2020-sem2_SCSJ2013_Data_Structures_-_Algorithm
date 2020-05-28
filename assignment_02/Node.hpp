@@ -9,6 +9,8 @@ class Node
 public:
 	StudentInfo data; // data
 	Node *next;	// pointer to next node
+	void DisplayNode() const;
+	void DisplayNode(int) const;
 };
 
 #endif

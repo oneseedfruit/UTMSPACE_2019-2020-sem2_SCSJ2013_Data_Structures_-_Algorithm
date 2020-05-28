@@ -30,25 +30,29 @@
 // our modified program (all the following files constitute one program):
 //
 //      2. Node.hpp
-//      3. List.hpp
-//      4. List.cpp
-//      5. StudentInfo.hpp
-//      6. main.cpp
+//      3. Node.cpp
+//      4. List.hpp
+//      5. List.cpp
+//      6. StudentInfo.hpp
+//      7. main.cpp
 //
 // Our modifications include but not limited to:
 //
 //      1. Split the code into multiple files for easier management and
 //         readability.
-//      2. Changed the "currIndex" variable to be zeroth-indexed. We are not 
-//         used to starting the count from 1, so all "currIndex" start from 0.
-//      3. Renamed some functions for better readability.
+//      2. Changed the "currIndex" variable to be zero-based. We are prefer
+//         to start the count from 0, so all "currIndex" start from 0.
+//      3. Refactored code for better readability.
 //      4. Reused the find node functions in the delete function.
+//      5. Added some functions for reuse, convenience, and to decrease errors.
+//      6. Added const keyword to functions not meant to modify data members.
 //
 // ----------------------------------------------------------------------------
 // The source files can be compiled with a C++98 compiler (no need for C++11).
-// Files 2, 3, 4, 5, and 6 should be compiled together as one program.
+// Files 2, 3, 4, 5, 6, and 7 should be compiled together as one program.
 // 
-// Compiled using g++ in Manjaro Linux using the following command:
+// Compiled using g++ in Manjaro Linux by running the following command in the
+// directory where the files are placed:
 //
 //              g++ --std=c++98 *.cpp -o linkedList
 //
@@ -75,8 +79,8 @@ int main(void)
 
     // aList.DeleteNextNodeWith("SX180357CSJS04");
     // aList.DeleteNextNodeWith("SX180355CSJS04");
-    aList.DeleteNextNodeWith("SX200357BLAS04");
-    // aList.DeleteNextNodeWith("SX200355VORA04");
+    // aList.DeleteNextNodeWith("SX200357BLAS04");
+    aList.DeleteNextNodeWith("SX200355VORA04");
 
     aList.DisplayList();
 
