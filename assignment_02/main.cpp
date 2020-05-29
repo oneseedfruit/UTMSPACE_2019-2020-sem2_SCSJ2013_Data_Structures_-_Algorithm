@@ -62,6 +62,7 @@
 //         (To keep a window open, instead of using a non-standard library, 
 //          prompt for input from stdin,
 //          e.g. use std::cin.get() from the iostream header.)
+//      8. Fixed memory leak by deleting all dynamic allocation in the heap.
 //
 // ----------------------------------------------------------------------------
 // The source files can be compiled with a C++98 compiler (no need for C++11).
