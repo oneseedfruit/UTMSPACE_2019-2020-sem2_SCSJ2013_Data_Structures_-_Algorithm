@@ -134,3 +134,25 @@ void List::DisplayList() const
         }
     }
 }
+
+void List::ClearListAndFreeMemory()
+{	
+	Node* currNode = head;	
+
+	if (head)
+	{
+		currNode = head->next;
+		delete head;
+		head = NULL;
+		--count;
+	}
+	
+	while (currNode)
+	{
+		Node *delNode = currNode;
+		currNode = currNode->next;
+		delete delNode;
+		delNode = NULL;
+		--count;
+	}
+}

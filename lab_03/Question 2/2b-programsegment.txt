@@ -1,0 +1,17 @@
+// 2. b. program SEGMENT only
+//
+// Question:
+//
+// Write a program segment to add a new node with
+// item equal to 23 at the head of the linked list
+// in Figure 7.9
+//
+
+// assuming we are referring to Figure 7.9 
+// BEFORE the execution of the lines in 2. a.
+
+node *newNode = new node; // add a new node
+newNode->item = 23;       // with item equal to 23
+
+newNode->link = head;     // at the head of the
+head = newNode;           // linked list

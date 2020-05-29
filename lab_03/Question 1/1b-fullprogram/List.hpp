@@ -16,6 +16,7 @@ public:
     Node *GetNodeAtIndex(int);
     Node DeleteNodeAtIndex(int);
     void DisplayList() const;
+    void ClearListAndFreeMemory();
 
 private:
     int count;

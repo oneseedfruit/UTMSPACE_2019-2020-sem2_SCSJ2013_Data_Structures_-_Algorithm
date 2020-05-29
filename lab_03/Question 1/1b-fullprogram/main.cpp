@@ -65,5 +65,7 @@ int main()
     std::cout << "Average of " << list.Count() << " values with a sum of " << sum << " is: " << sum * 1.0 / list.Count() << "\n\n";
     sum = 0;
 
+    list.ClearListAndFreeMemory();
+
     return 0;
 }
