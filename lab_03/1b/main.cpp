@@ -5,6 +5,7 @@
 int main()
 {
     List list;
+    int sum = 0;
 
     list.InsertNode(10);
     list.InsertNode(15);
@@ -17,29 +18,52 @@ int main()
 
     list.DisplayList();
 
+    std::cout << "\n";
+    for (int i = 0; i < list.Count(); ++i)
+    {
+        sum += list.GetNodeAtIndex(i)->value;
+    }    
+    std::cout << "Average of " << list.Count() << " values with a sum of " << sum << " is: " << sum * 1.0 / list.Count() << "\n\n";
+    sum = 0;
+
     std::cout << "\nInsert newNode1 at head...\n\n";
     list.InsertNode(newNode1, 0);
 
     list.DisplayList();
+
+    std::cout << "\n";    
+    for (int i = 0; i < list.Count(); ++i)
+    {
+        sum += list.GetNodeAtIndex(i)->value;
+    }    
+    std::cout << "Average of " << list.Count() << " values with a sum of " << sum << " is: " << sum * 1.0 / list.Count() << "\n\n";
+    sum = 0;
 
     std::cout << "\nInsert newNode2 after 20...\n\n";
     list.InsertNode(newNode2, 4);
 
     list.DisplayList();
 
+    std::cout << "\n";    
+    for (int i = 0; i < list.Count(); ++i)
+    {
+        sum += list.GetNodeAtIndex(i)->value;
+    }    
+    std::cout << "Average of " << list.Count() << " values with a sum of " << sum << " is: " << sum * 1.0 / list.Count() << "\n\n";
+    sum = 0;
+
     std::cout << "\nDelete 35...\n\n";
     list.DeleteNodeAtIndex(5);
 
     list.DisplayList();
 
-    std::cout << "\n";
-
-    int sum = 0;
+    std::cout << "\n";    
     for (int i = 0; i < list.Count(); ++i)
     {
         sum += list.GetNodeAtIndex(i)->value;
     }    
-    std::cout << "Average of " << list.Count() << " values with a sum of " << sum << " is: " << sum * 1.0 / list.Count() << "\n";
+    std::cout << "Average of " << list.Count() << " values with a sum of " << sum << " is: " << sum * 1.0 / list.Count() << "\n\n";
+    sum = 0;
 
     return 0;
 }
