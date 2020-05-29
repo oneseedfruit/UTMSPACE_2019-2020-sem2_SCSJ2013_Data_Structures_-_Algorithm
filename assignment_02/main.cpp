@@ -163,7 +163,7 @@ int main(void)
                     }
                 }
 
-                bList.ClearList();
+                bList.ClearListAndFreeMemory(verbose);;
 
                 option = -1;
                 findIndex = -1;
@@ -239,6 +239,8 @@ int main(void)
     }
 
     outfile.close();
+
+    aList.ClearListAndFreeMemory(verbose);
 
     return 0;
 }

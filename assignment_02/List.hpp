@@ -9,7 +9,7 @@
 class List
 {
 public:
-	List(void); // constructor
+	List(); // constructor
 //	~List(void); // destructor
 
 	bool IsEmpty() const;
@@ -20,7 +20,7 @@ public:
 	int FindNextNodeWith(std::string, bool verbose = false) const;
 	int DeleteNextNodeWith(int, bool verbose = false);
 	int DeleteNextNodeWith(std::string, bool verbose = false);
-	void ClearList(bool verbose = false);
+	void ClearListAndFreeMemory(bool verbose = false);
 	void DisplayList(bool verbose = false) const;
 	int Count() const;
 

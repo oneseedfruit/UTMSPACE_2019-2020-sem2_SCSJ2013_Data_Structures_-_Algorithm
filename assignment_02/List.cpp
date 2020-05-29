@@ -185,11 +185,25 @@ int List::DeleteNextNodeWith(std::string matric, bool verbose)
 	return DeleteNextNodeWith(currIndex, verbose);
 }
 
-void List::ClearList(bool verbose)
-{		
-	for (int i = 0; i < count; ++i)
+void List::ClearListAndFreeMemory(bool verbose)
+{	
+	Node* currNode = head;	
+
+	if (head)
 	{
-		DeleteNextNodeWith(i, verbose);
+		currNode = head->next;
+		delete head;
+		head = NULL;
+		--count;
+	}
+	
+	while (currNode)
+	{
+		Node *delNode = currNode;
+		currNode = currNode->next;
+		delete delNode;
+		delNode = NULL;
+		--count;
 	}
 }
 
