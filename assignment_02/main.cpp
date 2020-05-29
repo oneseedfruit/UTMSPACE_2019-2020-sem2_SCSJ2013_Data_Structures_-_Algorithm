@@ -1,12 +1,17 @@
 // Universiti Teknologi Malaysia
 // Semester 2 2019/2020
+//
 // ----------------------------------------------------------------------------
 // SCSJ2013 Data Structures & Algorithms
 // Assignment 2
 // Lecturer: Madam Nor Bahiah Binti Ahmad
-// ----------------------------------------------------------------------------
 //
-// "Change the given linked list program that able to store student information, 
+// ----------------------------------------------------------------------------
+//  Provied task:
+//
+// "Assignment 2 -
+//
+//  Change the given linked list program that able to store student information, 
 //  such as the student name, matric number, program and cgpa.  Create menu to 
 //  provide choices for the user to insert, delete, display and search from the 
 //  list.  You can also sort the list based on any criteria. 
@@ -20,14 +25,14 @@
 // Randy Tan Shaoxian SX180357CSJS04
 //
 // ----------------------------------------------------------------------------
-// Files should be in a set, consisting of: 
+// Our submitted files should be in a set, consisting of: 
 //
 //      1. linkedList.cpp___ (given linked list program, renamed to cpp___ to 
 //                            avoid it from being targeted for compilation 
 //                            because we used the "*" wildcard in our 
 //                            compilation command)
 //
-// our modified program (all the following files constitute one program):
+// and our modified program (all the following files constitute one program):
 //
 //      2. Node.hpp
 //      3. Node.cpp
@@ -35,6 +40,9 @@
 //      5. List.cpp
 //      6. StudentInfo.hpp
 //      7. main.cpp
+// 
+// In addition to that, there is also a sample input file:
+//
 //      8. studentdata (text file containing a list of student information)
 //
 // Our modifications include but not limited to:
@@ -64,13 +72,16 @@
 //
 //              g++ --std=c++98 *.cpp -o linkedList
 //
-// to output the executable file "linkedList".
+// to output the executable file "linkedList". The "--std=c++98" option is used
+// because the latest g++ installed in our systems default to c++11.
 //
 // On Windows, if using Dev-C++, just create a new project, then add all the 
 // files to the same project and compile then run.
 //
 // ----------------------------------------------------------------------------
 // Thank you Madam for this fun assignment! We had a great time doing it! :D
+// It is even more interesting than the previous assignment!
+//
 
 #include <iostream>
 #include <iomanip>
