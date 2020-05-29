@@ -106,7 +106,7 @@ int main(void)
 
     int option = -1;
     int findIndex = -1;
-    std::string inputString;
+    std::string inputString, inputString2, inputString3;
     float inputFloat = -1;
     List bList;
     char inputChar = ' ';
@@ -116,7 +116,7 @@ int main(void)
 
     while (option != 0)
     {
-        std::cout << "\nYour option: ";
+        std::cout << "\nYour option (9 to show menu options): ";
         std::cin >> option;
         std::cin.ignore();
 
@@ -170,7 +170,7 @@ int main(void)
                     std::cout << "\nStudent information not found!\n";
                 }
 
-                bList.ClearListAndFreeMemory(verbose);;
+                bList.ClearListAndFreeMemory(verbose);
 
                 option = -1;
                 findIndex = -1;
@@ -179,6 +179,26 @@ int main(void)
                 break;
 
             case 4:
+                if (verbose)
+                {
+                    std::cout << "\n\t>>> Operation [INSERT] new student information:\n";
+                }
+                std::cout << "\n---------------------------------------------\n";
+                std::cout << "| Student name: ";
+                std::getline(std::cin, inputString);
+                std::cout << "| Matric number: ";
+                std::getline(std::cin, inputString2);
+                std::cout << "| Program: ";
+                std::getline(std::cin, inputString3);       
+                std::cout << "| CGPA: ";
+                std::cin >> inputFloat;
+                std::cin.ignore();
+                std::cout << "\n---------------------------------------------\n";
+
+                aList.InsertNode(inputString, inputString2, inputString3, inputFloat, verbose);
+
+                option = -1;                
+                inputFloat = -1;                
                 break;
 
             case 5:
