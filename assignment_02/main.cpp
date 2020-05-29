@@ -110,6 +110,7 @@ int main(void)
     float inputFloat = -1;
     List bList;
     char inputChar = ' ';
+    int findFlag = 0;
 
     ShowMenuOptions(verbose);
 
@@ -160,7 +161,13 @@ int main(void)
                     {
                         bList.GetNextNodeFromIndex(findIndex)->DisplayNode(verbose);
                         bList.DeleteNextNodeWith(bList.GetNextNodeFromIndex(findIndex)->data.matric, verbose);
-                    }
+                        ++findFlag;
+                    }                    
+                }
+
+                if (findFlag == 0)
+                {
+                    std::cout << "\nStudent information not found!\n";
                 }
 
                 bList.ClearListAndFreeMemory(verbose);;
@@ -168,6 +175,7 @@ int main(void)
                 option = -1;
                 findIndex = -1;
                 inputFloat = -1;
+                findFlag = 0;
                 break;
 
             case 4:
