@@ -18,7 +18,7 @@
 //
 // Charlene Ng Andrew SX180355CSJS04
 // Randy Tan Shaoxian SX180357CSJS04
-
+//
 // ----------------------------------------------------------------------------
 // Files should be in a set, consisting of: 
 //
@@ -70,13 +70,58 @@
 #include "List.hpp"
 
 void ShowMenuOptions(bool verbose = false);
+void ShowCommandLineHelp(char *binname, bool verbose = false);
 
-int main(void)
+int main(int argc, char **argv)
 {
     bool verbose = false;
+    std::string filename = "studentdata";
+    
+    for (int i = 1; i < argc; ++i)
+    {
+        if (argv[i][0] == '-')
+        {   
+            switch (argv[i][1])
+            {
+                case 'V':
+                case 'v':
+                    verbose = true;
+                    break;
+
+                case 'F':
+                case 'f':
+                    filename = argv[i + 1];
+                    break;
+
+                case 'H':
+                case 'h':
+                    ShowCommandLineHelp(argv[0], verbose);
+                    return 0;
+                    break;
+            }
+
+            if (argv[i][1] == '-')
+            {
+                std::string argvi(argv[i]);
+
+                if (argvi.compare("--verbose") == 0)
+                {
+                    verbose = true;
+                }
+                else if (argvi.compare("--file") == 0)
+                {
+                    filename = argv[i + 1];
+                }
+                else if (argvi.compare("--help") == 0)
+                {
+                    ShowCommandLineHelp(argv[0], verbose);
+                    return 0;
+                }
+            }
+        }
+    }
 
     List aList;
-    std::string filename = "studentdata";
 
     std::ifstream infile(filename.c_str(), infile.in);
 
@@ -287,4 +332,16 @@ void ShowMenuOptions(bool verbose)
     std::cout << "5: Delete student information.\n";
     std::cout << "9: Show menu options.\n";
     std::cout << "0 or any character: Exit\n";
+}
+
+void ShowCommandLineHelp (char *binname, bool verbose)
+{
+    std::cout << "Usage: " << binname << " [OPTION]... [FILE]...\n";
+    std::cout << "Linked List demo program written for an assignment in a UTMSPACE class,\n";
+    std::cout << "SCSJ2013 Data Structures & Algorithm, during the 2nd semester of the \n";
+    std::cout << "2019/2020 session.\n\n";
+    
+    std::cout << "  -H, -h, --help                    show this help output\n";
+    std::cout << "  -V, -v, --verbose                 verbose mode\n";
+    std::cout << "  -F, -f, --file [/path/to/file]    specify an input file\n\n";
 }
