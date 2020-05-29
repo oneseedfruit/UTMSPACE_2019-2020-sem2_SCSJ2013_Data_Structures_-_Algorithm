@@ -47,6 +47,13 @@
 //      4. Reused the find node functions in the delete function.
 //      5. Added some functions for reuse, convenience, and to decrease errors.
 //      6. Added const keyword to functions not meant to modify data members.
+//      7. Removed unused header (conio.h), this header is not part of any
+//         standard library, it is mostly only used by MS-DOS compilers to 
+//         provide console input/output, so it it also not available on Linux. 
+//         It is also a C header which is not meant to be used in a C++ program.
+//         (To keep a window open, instead of using a non-standard library, 
+//          prompt for input from stdin,
+//          e.g. use std::cin.get() from the iostream header.)
 //
 // ----------------------------------------------------------------------------
 // The source files can be compiled with a C++98 compiler (no need for C++11).
@@ -57,7 +64,10 @@
 //
 //              g++ --std=c++98 *.cpp -o linkedList
 //
-// to output the executable file "linkedList"
+// to output the executable file "linkedList".
+//
+// On Windows, if using Dev-C++, just create a new project, then add all the 
+// files to the same project and compile then run.
 //
 // ----------------------------------------------------------------------------
 // Thank you Madam for this fun assignment! We had a great time doing it! :D
@@ -81,25 +91,6 @@ int main(int argc, char **argv)
     {
         if (argv[i][0] == '-')
         {   
-            switch (argv[i][1])
-            {
-                case 'V':
-                case 'v':
-                    verbose = true;
-                    break;
-
-                case 'F':
-                case 'f':
-                    filename = argv[i + 1];
-                    break;
-
-                case 'H':
-                case 'h':
-                    ShowCommandLineHelp(argv[0], verbose);
-                    return 0;
-                    break;
-            }
-
             if (argv[i][1] == '-')
             {
                 std::string argvi(argv[i]);
@@ -116,6 +107,38 @@ int main(int argc, char **argv)
                 {
                     ShowCommandLineHelp(argv[0], verbose);
                     return 0;
+                }
+                else
+                {
+                    std::cout << "Invalid argument(s) provided!\n\n";
+                    ShowCommandLineHelp(argv[0], verbose);
+                    return 0;
+                }
+            }
+            else
+            {
+                switch (argv[i][1])
+                {
+                    case 'V':
+                    case 'v':
+                        verbose = true;
+                        break;
+
+                    case 'F':
+                    case 'f':
+                        filename = argv[i + 1];
+                        break;
+
+                    case 'H':
+                    case 'h':
+                        ShowCommandLineHelp(argv[0], verbose);
+                        return 0;
+                        break;
+
+                    default:
+                        std::cout << "Invalid argument(s) provided!\n\n";
+                        ShowCommandLineHelp(argv[0], verbose);
+                        return 0;
                 }
             }
         }
