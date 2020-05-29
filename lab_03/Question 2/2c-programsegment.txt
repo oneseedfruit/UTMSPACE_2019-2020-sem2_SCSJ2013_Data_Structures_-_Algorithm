@@ -14,7 +14,7 @@
 // assume curr point to the node with the item
 // equal 10, so since it is pointing to the last
 // node, and we are deleting the last node, so
-// set it to NULL
+// set its link to point to NULL
 curr->link = NULL;
 
 // delete the last node in the linked list
