@@ -19,4 +19,7 @@ curr->link = NULL;
 
 // delete the last node in the linked list
 delete tail;
-tail = NULL; // set the pointer to point to NULL
+
+tail = curr; // set tail to point to curr
+             // since curr is now the last item
+             // in the linked list
