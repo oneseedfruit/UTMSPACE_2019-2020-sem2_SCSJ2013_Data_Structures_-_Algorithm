@@ -13,14 +13,19 @@ public:
 //	~List(void); // destructor
 
 	bool IsEmpty() const;
-	Node *InsertNode(std::string, std::string, std::string, float);
+	Node *InsertNode(std::string, std::string, std::string, float, bool verbose = false);
+	Node *InsertNode(Node *, bool verbose = false);
 	Node *GetNextNodeFromIndex(int) const;
-    int FindNextNodeWith(float) const;
-	int FindNextNodeWith(std::string) const;    
-	int DeleteNextNodeWith(std::string);
-	void DisplayList(void) const;
+    int FindNextNodeWith(float, bool verbose = false) const;
+	int FindNextNodeWith(std::string, bool verbose = false) const;
+	int DeleteNextNodeWith(int, bool verbose = false);
+	int DeleteNextNodeWith(std::string, bool verbose = false);
+	void ClearList(bool verbose = false);
+	void DisplayList(bool verbose = false) const;
+	int Count() const;
 
 private:
+	int count;
 	Node *head;
 };
 

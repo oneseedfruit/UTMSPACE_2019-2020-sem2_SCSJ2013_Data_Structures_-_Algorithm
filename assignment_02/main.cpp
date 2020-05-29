@@ -35,6 +35,7 @@
 //      5. List.cpp
 //      6. StudentInfo.hpp
 //      7. main.cpp
+//      8. studentdata (text file containing a list of student information)
 //
 // Our modifications include but not limited to:
 //
@@ -61,41 +62,199 @@
 // ----------------------------------------------------------------------------
 // Thank you Madam for this fun assignment! We had a great time doing it! :D
 
-#include <iostream> 
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <fstream>
 #include "Node.hpp"
 #include "List.hpp"
-using std::cout;
+
+void ShowMenuOptions(bool verbose = false);
 
 int main(void)
 {
+    bool verbose = false;
+
     List aList;
+    std::string filename = "studentdata";
 
-    aList.InsertNode("Randy Tan Shaoxian", "SX180357CSJS04", "SCSJ", 3.89);
-    aList.InsertNode("Charlene Ng Andrew", "SX180355CSJS04", "SCSJ", 4.0);
-    aList.InsertNode("Brachydios", "SX200357BLAS04", "SCSJ", 3.98);
-    aList.InsertNode("Deviljho", "SX200355VORA04", "SCSJ", 4.0);
+    std::ifstream infile(filename.c_str(), infile.in);
 
-    aList.DisplayList();
+    std::string name, matric, program;
+    float cgpa;
 
-    // aList.DeleteNextNodeWith("SX180357CSJS04");
-    // aList.DeleteNextNodeWith("SX180355CSJS04");
-    // aList.DeleteNextNodeWith("SX200357BLAS04");
-    aList.DeleteNextNodeWith("SX200355VORA04");
+    if (infile.is_open()) // Check if file is already opened
+    {
+        while (!infile.eof()) // If it is not end of file
+        {
+            std::getline(infile, name);
+            if (name.empty()) break;
 
-    aList.DisplayList();
+            std::getline(infile, matric);
+            std::getline(infile, program);
+            infile >> cgpa;
+            infile.ignore(); // Workaround to fix problem caused by mixing >> and getline()
+                        
+            std::string separator;
+            std::getline(infile, separator);            
 
+            aList.InsertNode(name, matric, program, cgpa);
+        }
+    }
+    
+    infile.close();
 
-    for (int i = 0; i < 5; ++i)
-    {   
-        if (aList.GetNextNodeFromIndex(i) != NULL)
-            cout << "Node " << i << " is " << aList.GetNextNodeFromIndex(i)->data.matric << "\n";
+    int option = -1;
+    int findIndex = -1;
+    std::string inputString;
+    float inputFloat = -1;
+    List bList;
+    char inputChar = ' ';
+
+    ShowMenuOptions(verbose);
+
+    while (option != 0)
+    {
+        std::cout << "\nYour option: ";
+        std::cin >> option;
+        std::cin.ignore();
+
+        switch (option)
+        {
+            case 1:
+                aList.DisplayList(verbose);
+                option = -1;
+                break;
+
+            case 2:
+                std::cout << "Enter a matric number to find student information: ";
+                std::getline(std::cin, inputString);
+                findIndex = aList.FindNextNodeWith(inputString, verbose);
+                if (findIndex >= 0)
+                {
+                    aList.GetNextNodeFromIndex(findIndex)->DisplayNode(verbose);
+                }
+                else
+                {
+                    std::cout << "\nStudent information not found!\n";
+                }
+                option = -1;
+                findIndex = -1;
+                inputFloat = -1;
+                break;
+
+            case 3:
+                std::cout << "Enter a CGPA to find student information: ";
+                std::cin >> inputFloat;
+                std::cin.ignore();
+                
+                for (int i = 0; i < aList.Count(); ++i)
+                {
+                    bList.InsertNode(aList.GetNextNodeFromIndex(i), verbose);                    
+                }
+
+                for (int i = 0; i < bList.Count(); ++i)
+                {
+                    findIndex = bList.FindNextNodeWith(inputFloat, verbose);
+                    if (findIndex >= 0)
+                    {
+                        bList.GetNextNodeFromIndex(findIndex)->DisplayNode(verbose);
+                        bList.DeleteNextNodeWith(bList.GetNextNodeFromIndex(findIndex)->data.matric, verbose);
+                    }
+                }
+
+                bList.ClearList();
+
+                option = -1;
+                findIndex = -1;
+                inputFloat = -1;
+                break;
+
+            case 4:
+                break;
+
+            case 5:
+                std::cout << "Enter a matric number to delete student information: ";
+                std::getline(std::cin, inputString);
+
+                findIndex = aList.FindNextNodeWith(inputString, verbose);
+                if (findIndex >= 0)
+                {
+                    aList.GetNextNodeFromIndex(findIndex)->DisplayNode(verbose);
+                    std::cout << "\n";
+
+                    while (inputChar != 'Y' && inputChar != 'y' && inputChar != 'N' && inputChar != 'n')
+                    {
+                        std::cout << "Are you sure? Y/N: ";
+                        std::cin >> inputChar;
+                        std::cin.ignore();
+                    }
+                    
+                    switch (inputChar)
+                    {
+                        case 'Y':
+                        case 'y':
+                            aList.DeleteNextNodeWith(inputString, verbose);
+                            std::cout << "\nStudent information deleted successfully!\n";
+                            break;
+                        
+                        case 'N':
+                        case 'n':
+                            std::cout << "\nStudent information not deleted.\n";
+                            break;
+                    }
+                }
+                else 
+                {
+                    std::cout << "\nStudent information not found! ";
+                    std::cout << "Nothing was deleted.\n";
+                }
+
+                option = -1;
+                findIndex = -1;
+                inputFloat = -1;
+                inputChar = ' ';
+                break;
+
+            case 9:
+                ShowMenuOptions(verbose);
+                break;
+        }
     }
 
-    cout << "\n";
-    cout << "\"SX180357CSJS04\" found at " << aList.FindNextNodeWith("SX180357CSJS04") << "!\n";
-    cout << "\"SX180355CSJS04\" found at " << aList.FindNextNodeWith("SX180355CSJS04") << "!\n";
-    cout << "\"SX200357BLAS04\" found at " << aList.FindNextNodeWith("SX200357BLAS04") << "!\n";
-    cout << "\"SX200355VORA04\" found at " << aList.FindNextNodeWith("SX200355VORA04") << "!\n";
+    std::ofstream outfile(filename.c_str(), outfile.out | outfile.trunc);
+
+    for (int i = 0; i < aList.Count(); ++i)
+    {
+        if (outfile.is_open())
+        {        
+            Node *n = aList.GetNextNodeFromIndex(i);
+            outfile << n->data.name << "\n";
+            outfile << n->data.matric << "\n";
+            outfile << n->data.program << "\n";
+            outfile << std::setprecision(2) << std::fixed;
+            outfile << n->data.cgpa << "\n";
+            outfile << "\n";
+        }
+    }
+
+    outfile.close();
 
     return 0;
+}
+
+void ShowMenuOptions(bool verbose)
+{
+    if (verbose)
+    {
+        std::cout << "\n\t>>> Operation [SHOW MENU OPTIONS]:\n";
+    }
+    std::cout << "\nChoose an option (type a number):\n";
+    std::cout << "1: Show all student information.\n";
+    std::cout << "2: Find student information by matric number.\n";
+    std::cout << "3: Find all student information by CGPA.\n";
+    std::cout << "4: Add new student information.\n";
+    std::cout << "5: Delete student information.\n";
+    std::cout << "9: Show menu options.\n";
+    std::cout << "0 or any character: Exit\n";
 }

@@ -2,8 +2,12 @@
 #include <iomanip>
 #include "Node.hpp"
 
-void Node::DisplayNode() const
+void Node::DisplayNode(bool verbose) const
 {
+    if (verbose)
+    {
+        std::cout << "\n\t>>> Operation [SHOW NODE]:\n";
+    }
     std::cout << "\n---------------------------------------------\n";
     std::cout << "| Student name: " << data.name << "\n";
     std::cout << "| Matric number: " << data.matric << "\n";
@@ -13,8 +17,13 @@ void Node::DisplayNode() const
     std::cout << "\n---------------------------------------------\n";
 }
 
-void Node::DisplayNode(int tabs) const
+void Node::DisplayNode(int tabs, bool verbose) const
 {
+    if (verbose)
+    {
+        for (int i = 0; i < tabs; ++i) std::cout << "\t";
+        std::cout << ">>> Operation [SHOW NODE]:\n";
+    }
     for (int i = 0; i < tabs; ++i) std::cout << "\t";
     std::cout << ">>> ---------------------------------------------\n";
     for (int i = 0; i < tabs; ++i) std::cout << "\t";
