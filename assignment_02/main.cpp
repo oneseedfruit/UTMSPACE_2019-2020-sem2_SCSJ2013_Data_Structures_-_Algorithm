@@ -262,16 +262,48 @@ int main(int argc, char **argv)
                 {
                     std::cout << "\n\t>>> Operation [INSERT] new student information:\n";
                 }
+
+                inputString = "";
+                inputString2 = "";
+                inputString3 = "";                
+
                 std::cout << "\n---------------------------------------------\n";
-                std::cout << "| Student name: ";
-                std::getline(std::cin, inputString);
-                std::cout << "| Matric number: ";
-                std::getline(std::cin, inputString2);
-                std::cout << "| Program: ";
-                std::getline(std::cin, inputString3);       
-                std::cout << "| CGPA: ";
-                std::cin >> inputFloat;
-                std::cin.ignore();
+
+                while (inputString.empty() || inputString.length() < 3 ||
+                            inputString.find('0') != std::string::npos ||
+                            inputString.find('1') != std::string::npos ||
+                            inputString.find('2') != std::string::npos ||
+                            inputString.find('3') != std::string::npos ||
+                            inputString.find('4') != std::string::npos ||
+                            inputString.find('5') != std::string::npos ||
+                            inputString.find('6') != std::string::npos ||
+                            inputString.find('7') != std::string::npos ||
+                            inputString.find('8') != std::string::npos ||
+                            inputString.find('9') != std::string::npos)
+                {
+                    std::cout << "| Student name: ";
+                    std::getline(std::cin, inputString);
+                }
+                
+                while (inputString2.empty() || inputString2.length() < 10)
+                {
+                    std::cout << "| Matric number: ";
+                    std::getline(std::cin, inputString2);
+                }
+
+                while (inputString3.empty() || inputString3.length() < 4)
+                {
+                    std::cout << "| Program: ";
+                    std::getline(std::cin, inputString3);       
+                }
+
+                while (inputFloat < 0 || inputFloat > 4)
+                {
+                    std::cout << "| CGPA: ";
+                    std::cin >> inputFloat;
+                    std::cin.ignore();
+                }
+
                 std::cout << "\n---------------------------------------------\n";
 
                 aList.InsertNode(inputString, inputString2, inputString3, inputFloat, verbose);
