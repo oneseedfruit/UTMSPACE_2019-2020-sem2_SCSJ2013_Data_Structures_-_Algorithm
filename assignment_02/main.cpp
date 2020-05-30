@@ -291,7 +291,8 @@ int main(int argc, char **argv)
                     std::getline(std::cin, inputString);
                 }
                 
-                while (inputString2.empty() || inputString2.length() < 10)
+                while (inputString2.empty() || inputString2.length() < 10 ||
+                        aList.FindNextNodeWith(inputString2, verbose) >= 0)
                 {
                     std::cout << "| Matric number: ";
                     std::getline(std::cin, inputString2);
