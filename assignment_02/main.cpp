@@ -67,15 +67,15 @@
 //
 //      1. Split the code into multiple files for easier management and
 //         readability.
-//      2. Changed the "currIndex" variable to be zero-based. We are prefer
-//         to start the count from 0, so all "currIndex" start from 0.
+//      2. Changed the "currIndex" variable to be zero-based. We prefer
+//         to start the count from 0, so all counters start from 0.
 //      3. Refactored code for better readability.
 //      4. Reused the find node functions in the delete function.
 //      5. Added some functions for reuse, convenience, and to decrease errors.
 //      6. Added const keyword to functions not meant to modify data members.
 //      7. Removed unused header (conio.h), this header is not part of any
 //         standard library, it is mostly only used by MS-DOS compilers to 
-//         provide console input/output, so it it also not available on Linux. 
+//         provide console input/output, so it is also not available on Linux. 
 //         It is also a C header which is not meant to be used in a C++ program.
 //         (To keep a window open, instead of using a non-standard library, 
 //          prompt for input from stdin,
@@ -85,6 +85,7 @@
 //          i. Memory leak detection done with valgrind (https://www.valgrind.org/) 
 //             on a *nix system.
 //         ii. See files listed under 10. to 13 for details.
+//      9. Added command-line arguments. Run the program with "-h" for details.
 //
 // ----------------------------------------------------------------------------
 // The source files can be compiled with a C++98 compiler (no need for C++11).
