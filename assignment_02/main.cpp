@@ -45,9 +45,23 @@
 //
 //      8. studentdata (text file containing a list of student information)
 // 
-// and a recorded video of the program execution:
+// a recorded video of the program execution:
 //
 //      9. programoutputvideo.mp4
+//
+// a recorded video and output from valgrind AFTER the memory leak is fixed:
+//
+//     10. valgrindoutput-memoryleak-fixed-video.mp4 (running valgrind to 
+//         detect memory leak)
+//     11. valgrindoutput-memoryleak-fixed.txt (output from valgrind)
+//
+// a recorded video and output from valgrind running on the original 
+// linkedList.cpp (temporarily renamed from "linkedList.cpp___" to be compiled) 
+// BEFORE the memory leak was fixed:
+//
+//     12. valgrindoutput-memoryleak-video.mp4 (running valgrind to 
+//         detect memory leak)
+//     13. valgrindoutput-memoryleak.txt (output from valgrind)
 //
 // Our modifications include but not limited to:
 //
@@ -68,6 +82,9 @@
 //          e.g. use std::cin.get() from the iostream header.)
 //      8. Fixed memory leak by deleting all dynamic allocations in the heap
 //         the allocations are not used anymore.
+//          i. Memory leak detection done with valgrind (https://www.valgrind.org/) 
+//             on a *nix system.
+//         ii. See files listed under 10. to 13 for details.
 //
 // ----------------------------------------------------------------------------
 // The source files can be compiled with a C++98 compiler (no need for C++11).
