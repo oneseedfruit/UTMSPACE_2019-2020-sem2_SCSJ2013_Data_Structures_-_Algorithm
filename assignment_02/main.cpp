@@ -213,7 +213,7 @@ int main(int argc, char **argv)
                 break;
 
             case 2:
-                std::cout << "Enter a matric number to find student information: ";
+                std::cout << "Enter a matric number to list a student information: ";
                 std::getline(std::cin, inputString);
                 findIndex = aList.FindNextNodeWith(inputString, verbose);
                 if (findIndex >= 0)
@@ -230,7 +230,7 @@ int main(int argc, char **argv)
                 break;
 
             case 3:
-                std::cout << "Enter a CGPA to find student information: ";
+                std::cout << "Enter a CGPA to list all student information with that CGPA: ";
                 std::cin >> inputFloat;
                 std::cin.ignore();
                 
@@ -320,7 +320,7 @@ int main(int argc, char **argv)
                 break;
 
             case 5:
-                std::cout << "Enter a matric number to delete student information: ";
+                std::cout << "Enter a matric number to delete a student information: ";
                 std::getline(std::cin, inputString);
 
                 findIndex = aList.FindNextNodeWith(inputString, verbose);

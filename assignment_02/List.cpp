@@ -2,6 +2,14 @@
 #include <iomanip>
 #include "List.hpp"
 
+void ToUpper(std::string &s)
+{
+   for (unsigned int l = 0; l < s.length(); l++)
+  {
+    s[l] = toupper(s[l]);
+  }
+}
+
 List::List()
 {
     head = NULL;
@@ -19,6 +27,9 @@ Node* List::InsertNode(std::string name, std::string matric, std::string program
 	Node *currNode = head;
 	Node *prevNode = NULL;
 	
+	ToUpper(matric);
+	ToUpper(program);
+
 	while (currNode != NULL && matric.compare(currNode->data.matric) > 0)
 	{
 		prevNode = currNode;
@@ -112,6 +123,8 @@ int List::FindNextNodeWith(std::string matric, bool verbose) const
 {
 	int currIndex =	0;
     Node *currNode = head;
+
+	ToUpper(matric);
 
 	if (verbose)
     {		
