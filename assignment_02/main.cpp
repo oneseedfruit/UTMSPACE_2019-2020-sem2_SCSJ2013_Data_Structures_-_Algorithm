@@ -44,6 +44,10 @@
 // In addition to that, there is also a sample input file:
 //
 //      8. studentdata (text file containing a list of student information)
+// 
+// and a recorded video of the program execution:
+//
+//      9. programoutputvideo.mp4
 //
 // Our modifications include but not limited to:
 //
@@ -62,7 +66,8 @@
 //         (To keep a window open, instead of using a non-standard library, 
 //          prompt for input from stdin,
 //          e.g. use std::cin.get() from the iostream header.)
-//      8. Fixed memory leak by deleting all dynamic allocation in the heap.
+//      8. Fixed memory leak by deleting all dynamic allocations in the heap
+//         the allocations are not used anymore.
 //
 // ----------------------------------------------------------------------------
 // The source files can be compiled with a C++98 compiler (no need for C++11).
