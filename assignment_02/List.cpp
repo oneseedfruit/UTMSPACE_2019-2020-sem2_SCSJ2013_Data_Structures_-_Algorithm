@@ -119,21 +119,27 @@ int List::FindNextNodeWith(float CGPA, bool verbose) const
 	return currNode ? currIndex : -1;
 }
 
-int List::FindNextNodeWith(std::string matric, bool verbose) const
+int List::FindNextNodeWith(std::string query, bool verbose) const
 {
 	int currIndex =	0;
     Node *currNode = head;
 
-	ToUpper(matric);
+	ToUpper(query);
 
 	if (verbose)
     {		
-        std::cout << "\n\t>>> Operation [FIND] node with matric number \"" << matric << "\":\n";
-    }
+        std::cout << "\n\t>>> Operation [FIND] node with matric number \"" << query << "\":\n";
+	}
+	
+	std::string storedString = query.length() > 4 ? currNode->data.matric : currNode->data.program;
 
-	while (currNode && currNode->data.matric != matric)
+	while (currNode && storedString.compare(query) != 0)
 	{
 		currNode = currNode->next;
+		if (currNode)
+		{
+			storedString = query.length() > 4 ? currNode->data.matric : currNode->data.program;
+		}
 		currIndex++;
 	}
 

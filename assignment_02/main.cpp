@@ -213,24 +213,56 @@ int main(int argc, char **argv)
                 break;
 
             case 2:
-                std::cout << "Enter a matric number to list a student information: ";
+                std::cout << "Enter a [matric number] to list a student information,\n";
+                std::cout << "OR enter a [program] to list all students in that program: ";
                 std::getline(std::cin, inputString);
-                findIndex = aList.FindNextNodeWith(inputString, verbose);
-                if (findIndex >= 0)
+
+                if (inputString.length() > 4)
                 {
-                    aList.GetNextNodeFromIndex(findIndex)->DisplayNode(verbose);
+                    findIndex = aList.FindNextNodeWith(inputString, verbose);
+                    if (findIndex >= 0)
+                    {
+                        aList.GetNextNodeFromIndex(findIndex)->DisplayNode(verbose);
+                    }
+                    else
+                    {
+                        std::cout << "\nStudent information not found!\n";
+                    }
                 }
                 else
                 {
-                    std::cout << "\nStudent information not found!\n";
+                    for (int i = 0; i < aList.Count(); ++i)
+                    {
+                        bList.InsertNode(aList.GetNextNodeFromIndex(i), verbose);                    
+                    }
+
+                    for (int i = 0; i < bList.Count(); ++i)
+                    {
+                        findIndex = bList.FindNextNodeWith(inputString, verbose);
+                        if (findIndex >= 0)
+                        {
+                            bList.GetNextNodeFromIndex(findIndex)->DisplayNode(verbose);
+                            bList.DeleteNextNodeWith(bList.GetNextNodeFromIndex(findIndex)->data.matric, verbose);
+                            ++findFlag;
+                        }
+                    }
+
+                    if (findFlag == 0)
+                    {
+                        std::cout << "\nStudent information not found!\n";
+                    }
+
+                    bList.ClearListAndFreeMemory(verbose);
                 }
+
                 option = -1;
                 findIndex = -1;
                 inputFloat = -1;
+                findFlag = 0;
                 break;
 
             case 3:
-                std::cout << "Enter a CGPA to list all student information with that CGPA: ";
+                std::cout << "Enter a [CGPA] to list all students with that CGPA: ";
                 std::cin >> inputFloat;
                 std::cin.ignore();
                 
@@ -273,6 +305,7 @@ int main(int argc, char **argv)
                 inputString2 = "";
                 inputString3 = "";                
 
+                std::cout << "\nEnter a student's information:";
                 std::cout << "\n---------------------------------------------\n";
 
                 while (inputString.empty() || inputString.length() < 3 ||
@@ -398,12 +431,12 @@ void ShowMenuOptions(bool verbose)
         std::cout << "\n\t>>> Operation [SHOW MENU OPTIONS]:\n";
     }
     std::cout << "\nChoose an option (type a number):\n";
-    std::cout << "1: Show all student information.\n";
-    std::cout << "2: Find student information by matric number.\n";
-    std::cout << "3: Find all student information by CGPA.\n";
-    std::cout << "4: Add new student information.\n";
-    std::cout << "5: Delete student information.\n";
-    std::cout << "9: Show menu options.\n";
+    std::cout << "1: [Show] information for all students.\n";
+    std::cout << "2: [Find] a student's information by [matric number]\n   OR list all students in a [program].\n";
+    std::cout << "3: [Find] and list all students by [CGPA].\n";
+    std::cout << "4: [Add] new student information.\n";
+    std::cout << "5: [Delete] student information.\n";
+    std::cout << "9: Show [menu] options.\n";
     std::cout << "0 or any character: Exit\n";
 }
 

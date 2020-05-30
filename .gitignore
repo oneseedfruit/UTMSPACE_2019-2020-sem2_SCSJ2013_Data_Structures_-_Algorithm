@@ -34,3 +34,5 @@ sketches/
 *.exe
 *.out
 *.app
+
+vgcore*
