@@ -1,6 +1,9 @@
 // stack_01.cpp        
 #include <iostream>
 // #include <conio.h> // commented out because doesn't exist on Linux systems, non-standard, cannot compile with this on Linux
+//
+// We (Randy & Charlene) only have Manjaro Linux, we don't use Microsoft Windows.
+//
 
 using namespace std;
 

@@ -1,6 +1,9 @@
 // stack_03.cpp         
 #include <iostream>
-#include <conio.h>
+// #include <conio.h> // commented out because doesn't exist on Linux systems, non-standard, cannot compile with this on Linux
+//
+// We (Randy & Charlene) only have Manjaro Linux, we don't use Microsoft Windows.
+//
 
 using namespace std;
 #define MAXSTACK 10
@@ -44,6 +47,14 @@ void Stack::pop()
 // Task 3 for stack 
 void Stack::emptyStack()
 {       // Task 3, write code for emptyStack() 
+    for (int i = top; i > -1; --i)
+    {
+        pop();
+        if (isEmpty())
+        {
+            cout << endl << "Stack is empty";
+        }
+    }
 }
 
 int main()
@@ -63,7 +74,7 @@ int main()
     stack.emptyStack();
     cout << endl; 
     
-    getche();
+    // getche();  // commented out because doesn't exist on Linux systems, non-standard, cannot compile with this on Linux
     return 0;
 }
 
