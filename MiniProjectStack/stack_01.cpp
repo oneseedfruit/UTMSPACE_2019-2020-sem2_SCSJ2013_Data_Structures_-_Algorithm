@@ -4,6 +4,14 @@
 //
 // We (Randy & Charlene) only have Manjaro Linux, we don't use Microsoft Windows.
 //
+// ----------------------------------------------------------------------------
+// Completed in a group of 2 by:
+//
+// Charlene Ng Andrew SX180355CSJS04
+// Randy Tan Shaoxian SX180357CSJS04
+//
+// ----------------------------------------------------------------------------
+//
 
 using namespace std;
 
