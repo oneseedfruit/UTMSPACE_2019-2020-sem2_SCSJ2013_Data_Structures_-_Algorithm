@@ -1,0 +1,9 @@
+4.
+
+a.
+
+i) When front or rear reaches the end of the array, the next element gets wrapped around back to the beginning of the array. 
+No more rightward drifting, but now we cannot use the front or the rear to figure out if the queue is full or empty.
+
+ii) A queue implemented using a linked list doesn't have this problem. The pointer on the node that points to the next node can just
+point back to the head if it is at the rear of the queue.
