@@ -9,6 +9,7 @@ namespace randydsa
     {
     private:
         node *head;
+        node *tail;
         int node_count;
 
     public:
@@ -21,6 +22,7 @@ namespace randydsa
         node *remove_node_at_index(int, bool freemem = false);
         node *get_node_at_index(int) const;
         node *get_node_at_head() const;
+        node *get_node_at_tail() const;
         int get_index_of_node(node *) const;
         void free_memory();
     };

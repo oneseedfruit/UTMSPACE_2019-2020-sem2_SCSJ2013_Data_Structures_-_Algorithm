@@ -89,18 +89,23 @@ int main(int argc, char **argv)
     list.insert_node(node2_brachydios);
     list.insert_node_at_head(node3_tigrex);
     list.insert_node(node4_zinogre);
-    list.insert_node(node5_glavenus);
+    list.insert_node(node5_glavenus);    
     
     display_linkedlist_content_name(list);
 
     std::cout << "\n";
 
     // Removing a node
-    int remove_index = 3;
-    std::cout << "Removed node at index: " << remove_index << "\n";
-    std::cout << "Output from node removal: " << list.remove_node_at_index(remove_index) << "\n";
+    std::cout << "Removing node: " << node2_brachydios->data.name << "\n\n";
+    list.remove_node(node2_brachydios);
+    display_linkedlist_content_name(list);
+
     std::cout << "\n";
 
+    // Removing a node by index
+    int remove_index = 3;
+    std::cout << "Removing node at index: " << remove_index << "\n\n";
+    list.remove_node_at_index(remove_index);
     display_linkedlist_content_name(list);
 
     std::cout << "\n";
@@ -251,10 +256,12 @@ void display_linkedlist_content_name(linkedlist list)
         node *n = list.get_node_at_index(i);
         if (n != NULL)
         {
-            std::cout << (n->previous != NULL ? n->previous->data.name : "N/A") << " <- "
+            std::cout << "\t" << (n->previous != NULL ? n->previous->data.name : "N/A") << " <- "
                       << "[" << n->data.name << "]"
                       << " -> " << (n->next != NULL ? n->next->data.name : "N/A")
                       << "\n";
         }            
     }
+    std::cout << "Head: " << list.get_node_at_head()->data.name << "\n";
+    std::cout << "Tail: " << list.get_node_at_tail()->data.name << "\n";
 }

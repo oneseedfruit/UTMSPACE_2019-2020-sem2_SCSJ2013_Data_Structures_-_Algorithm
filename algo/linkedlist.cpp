@@ -5,12 +5,13 @@ namespace randydsa
     linkedlist::linkedlist()
     {
         head = NULL;
+        tail = NULL;
         node_count = 0;
     }
 
     bool linkedlist::is_empty() const
     {
-        return head == NULL;
+        return head == NULL && tail == NULL;
     }
 
     int linkedlist::count() const
@@ -37,16 +38,24 @@ namespace randydsa
         _node->next = previousNode->next;
         _node->previous = previousNode;
         previousNode->next = _node;
+
+        tail = previousNode->next;
+
         ++node_count;
         return _node;
     }
 
     node *linkedlist::insert_node_at_head(node *_node)
     {
-        if (head != NULL)
-            head->previous = _node;
+        if (head != NULL)        
+            head->previous = _node;        
+        
         _node->next = head;
-        head = _node;        
+        head = _node;
+
+        if (head->next == NULL)
+            tail = head;
+
         ++node_count;
         return _node;
     }
@@ -57,6 +66,7 @@ namespace randydsa
         {
             delete head;
             head = NULL;
+            tail = NULL;
             --node_count;
 
             if (freemem)
@@ -84,6 +94,7 @@ namespace randydsa
 
         if (_node->next == NULL)
         {
+            tail = _node->previous;
             delete _node->previous->next;
             _node->previous->next = NULL;
             --node_count;
@@ -133,6 +144,11 @@ namespace randydsa
         return head;
     }
 
+    node *linkedlist::get_node_at_tail() const
+    {
+        return tail;
+    }
+
     int linkedlist::get_index_of_node(node *_node) const
     {
         node *currentNode = head;
@@ -161,5 +177,8 @@ namespace randydsa
                 n = NULL;
             }
         }
+
+        head = NULL;
+        tail = NULL;
     }
 }
