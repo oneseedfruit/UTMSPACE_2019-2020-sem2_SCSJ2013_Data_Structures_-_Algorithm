@@ -8,6 +8,7 @@ namespace randydsa
         public:
             static int sequential_search_unsorted(int, int[], int);
             static int sequential_search_sorted(int, int[], int);
+            static int binary_search_sorted(int, int[], int);
     };
 }
 

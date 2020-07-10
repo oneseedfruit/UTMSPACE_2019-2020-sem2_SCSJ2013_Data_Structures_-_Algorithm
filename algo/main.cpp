@@ -33,8 +33,8 @@ int main(int argc, char **argv)
     // Search
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    int search_for_this = 100;
-    int found_at = search::sequential_search_unsorted(search_for_this, data, count);
+    int search_for_this = 20;
+    int found_at = search::binary_search_sorted(search_for_this, data, count);
 
     std::cout << search_for_this << " found at index " << found_at << " (zero indexed).\n\n";
 
