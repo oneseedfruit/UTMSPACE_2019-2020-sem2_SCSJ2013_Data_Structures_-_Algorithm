@@ -21,6 +21,10 @@ void display_linkedlist_content_name(linkedlist);
 
 int main(int argc, char **argv)
 {
+    std::cout << "==================\n";
+    std::cout << "Sort and Search: \n";
+    std::cout << "==================\n\n";
+
     const int count = 10;
     int data[count] = { 10, 9, 20, 21, 4, 6, 100, 1, 5, 99 };
     
@@ -29,7 +33,7 @@ int main(int argc, char **argv)
     {
         std::cout << data[i] << " ";
     }
-    std::cout << "\n\n";
+    std::cout << "\n";
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Sort
@@ -37,12 +41,12 @@ int main(int argc, char **argv)
 
     sort::insertion_sort(data, count);
 
-    std::cout << "Data set (sorted): ";
+    std::cout << "Sort: ";
     for (int i = 0; i < count; ++i)
     {
         std::cout << data[i] << " ";
     }
-    std::cout << "\n\n";
+    std::cout << "\n";
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Search
@@ -75,6 +79,10 @@ int main(int argc, char **argv)
 
     // Linked list
     linkedlist list;
+
+    std::cout << "==================\n";
+    std::cout << "Linked List: \n";
+    std::cout << "==================\n\n";
 
     // Insert nodes
     list.insert_node(node1_deviljho);
@@ -123,7 +131,9 @@ int main(int argc, char **argv)
     // Stack implemented using array
     stack_array stack;
 
-    std::cout << "stack_array\n";
+    std::cout << "==================\n";
+    std::cout << "Stack (Array): \n";
+    std::cout << "==================\n\n";
 
     // Push data into the stack
     stack.push('p');
@@ -149,7 +159,9 @@ int main(int argc, char **argv)
     // Stack implemented using linked list
     stack_linkedlist stackll;
 
-    std::cout << "stack_linkedlist\n";
+    std::cout << "======================\n";
+    std::cout << "Stack (Linked List): \n";
+    std::cout << "======================\n\n";
     
     // Push data into the stack
     stackll.push('p');
@@ -187,7 +199,9 @@ int main(int argc, char **argv)
     // Queue implemented using array
     queue_array queue_arr;
 
-    std::cout << "queue_array\n";
+    std::cout << "==================\n";
+    std::cout << "Queue (Array): \n";
+    std::cout << "==================\n\n";
 
     queue_arr.enqueue('r');
     queue_arr.enqueue('a');
