@@ -24,7 +24,7 @@ namespace randydsa
         return found; // return the result as the index of the found data in the data set
     }
 
-    // Works on (ascendingly) sorted data only!
+    // Works on (ascendingly) sorted data only! Data supposingly sorted to improve searching efficency
     int search::sequential_search_sorted(int search_for, int data[], int count)
     {
         int found = -1; // initialize found index to -1, means not found
