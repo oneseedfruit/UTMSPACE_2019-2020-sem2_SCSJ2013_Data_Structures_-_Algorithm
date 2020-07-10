@@ -184,7 +184,10 @@ int main(int argc, char **argv)
     // Queue
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // Queue implemented using array
     queue_array queue_arr;
+
+    std::cout << "queue_array\n";
 
     queue_arr.enqueue('r');
     queue_arr.enqueue('a');
@@ -194,16 +197,18 @@ int main(int argc, char **argv)
     queue_arr.enqueue('l');
     queue_arr.enqueue('o');
     queue_arr.enqueue('s');
-    std::cout << queue_arr.get_front() << "\n";
-    std::cout << queue_arr.get_back() << "\n";
+    std::cout << "Front: " << queue_arr.get_front() << "; Back: " << queue_arr.get_back() << "\n";
+    std::cout << "Is queue empty? " << queue_arr.is_empty() << "\n";
 
     while (!queue_arr.is_empty())
-    {
-        std::cout << "\n";
-        std::cout << queue_arr.get_front() << "\n";
-        std::cout << queue_arr.get_back() << "\n";
-        queue_arr.dequeue();
+    {        
+        std::cout << "Front: " << queue_arr.get_front() 
+                  << "; Back: " << queue_arr.get_back() 
+                  << "; Calling dequeue()... Dequeued: " << queue_arr.dequeue() << "\n";        
     }
+    std::cout << "Is queue empty? " << queue_arr.is_empty() << "\n";
+
+    std::cout << "\n";
 
     return 0;
 }
