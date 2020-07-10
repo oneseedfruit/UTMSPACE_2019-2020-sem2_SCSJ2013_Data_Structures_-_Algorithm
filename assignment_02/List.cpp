@@ -37,7 +37,7 @@ Node* List::InsertNode(std::string name, std::string matric, std::string program
 		currIndex++;
 	}
 
-	Node *newNode = new Node;	
+	Node *newNode = new Node;
     newNode->data.name = name;
     newNode->data.matric = matric;
     newNode->data.program = program;
