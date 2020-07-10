@@ -27,7 +27,7 @@ class Stack
         bool isEmpty();        
         void push(char);   
         void printLIFO();  
-        void printFIFO();       
+        void printFIFO();
 };
 
 bool Stack::isFull()

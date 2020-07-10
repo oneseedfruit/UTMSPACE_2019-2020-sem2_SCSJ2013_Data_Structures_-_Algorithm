@@ -4,11 +4,13 @@
 #include "linkedlist/lldata.hpp"
 #include "linkedlist/node.hpp"
 #include "linkedlist.hpp"
+#include "stack.hpp"
 using randydsa::sort;
 using randydsa::search;
 using randydsa::lldata;
 using randydsa::node;
 using randydsa::linkedlist;
+using randydsa::stack_array;
 
 void display_linkedlist_content(linkedlist);
 
@@ -106,7 +108,35 @@ int main(int argc, char **argv)
     
     std::cout << "\n";
 
+    // Free all memory allocated by nodes added to the linked list
     list.free_memory();
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Stack
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Stack implemented using array    
+    stack_array stack;
+
+    // Push data into the stack
+    stack.push('p');
+    stack.push('m');
+    stack.push('o');
+    stack.push('h');
+    stack.push('c');
+    stack.push('r');
+    stack.push('a');
+    stack.push('g');    
+    std::cout << "Stack size after pushed: " << stack.count() << "\n";
+
+    for (int i = 0; !stack.is_empty(); ++i)
+    {
+        // Pop data from the stack
+        std::cout << stack.pop();
+    }
+    std::cout << "\nStack size after popped: " << stack.count() << "\n";
+
+    std::cout << "\n";
 
     return 0;
 }
