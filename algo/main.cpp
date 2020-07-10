@@ -11,8 +11,10 @@ using randydsa::lldata;
 using randydsa::node;
 using randydsa::linkedlist;
 using randydsa::stack_array;
+using randydsa::stack_linkedlist;
 
-void display_linkedlist_content(linkedlist);
+void display_linkedlist_content_char(linkedlist);
+void display_linkedlist_content_name(linkedlist);
 
 int main(int argc, char **argv)
 {
@@ -54,19 +56,19 @@ int main(int argc, char **argv)
 
     // Node data
     const int lldata_count = 5;
-    lldata lldata[lldata_count];
-    lldata[0].name = "Deviljho";
-    lldata[1].name = "Brachydios";
-    lldata[2].name = "Tigrex";
-    lldata[3].name = "Zinogre";
-    lldata[4].name = "Glavenus";
+    lldata linkedlist_data[lldata_count];
+    linkedlist_data[0].name = "Deviljho";
+    linkedlist_data[1].name = "Brachydios";
+    linkedlist_data[2].name = "Tigrex";
+    linkedlist_data[3].name = "Zinogre";
+    linkedlist_data[4].name = "Glavenus";
 
     // Nodes
-    node *node1_deviljho = new node(lldata[0]);
-    node *node2_brachydios = new node(lldata[1]);
-    node *node3_tigrex = new node(lldata[2]);
-    node *node4_zinogre = new node(lldata[3]);
-    node *node5_glavenus = new node(lldata[4]);
+    node *node1_deviljho = new node(linkedlist_data[0]);
+    node *node2_brachydios = new node(linkedlist_data[1]);
+    node *node3_tigrex = new node(linkedlist_data[2]);
+    node *node4_zinogre = new node(linkedlist_data[3]);
+    node *node5_glavenus = new node(linkedlist_data[4]);
 
     // Linked list
     linkedlist list;
@@ -78,7 +80,7 @@ int main(int argc, char **argv)
     list.insert_node(node4_zinogre);
     list.insert_node(node5_glavenus);
     
-    display_linkedlist_content(list);
+    display_linkedlist_content_name(list);
 
     std::cout << "\n";
 
@@ -88,7 +90,7 @@ int main(int argc, char **argv)
     std::cout << "Output from node removal: " << list.remove_node_at_index(remove_index) << "\n";
     std::cout << "\n";
 
-    display_linkedlist_content(list);
+    display_linkedlist_content_name(list);
 
     std::cout << "\n";
 
@@ -115,8 +117,10 @@ int main(int argc, char **argv)
     // Stack
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // Stack implemented using array    
+    // Stack implemented using array
     stack_array stack;
+
+    std::cout << "stack_array\n";
 
     // Push data into the stack
     stack.push('p');
@@ -126,9 +130,10 @@ int main(int argc, char **argv)
     stack.push('c');
     stack.push('r');
     stack.push('a');
-    stack.push('g');    
+    stack.push('g');
     std::cout << "Stack size after pushed: " << stack.count() << "\n";
 
+    std::cout << "Stack content popped out: ";
     for (int i = 0; !stack.is_empty(); ++i)
     {
         // Pop data from the stack
@@ -138,13 +143,63 @@ int main(int argc, char **argv)
 
     std::cout << "\n";
 
+    // Stack implemented using linked list
+    stack_linkedlist stackll;
+
+    std::cout << "stack_linkedlist\n";
+    
+    // Push data into the stack
+    stackll.push('p');
+    stackll.push('m');
+    stackll.push('o');
+    stackll.push('h');
+    stackll.push('c');
+    stackll.push('r');
+    stackll.push('a');
+    stackll.push('g');
+
+    // Get the top of the stack
+    std::cout << "Repetitively get the top of the stack: ";
+    std::cout << stackll.get_top();
+    std::cout << stackll.get_top();
+    std::cout << stackll.get_top();
+
+    std::cout << "\n";
+
+    std::cout << "Stack content popped out: ";
+    while (!stackll.is_empty())
+    {
+        // Pop data from stack
+        std::cout << stackll.pop();
+    }
+    
+    std::cout << "\n";
+
+    stackll.free_memory();
+
     return 0;
 }
 
-void display_linkedlist_content(linkedlist list)
+void display_linkedlist_content_char(linkedlist list)
 {
     std::cout << "Current linked list nodes: \n";
-    for (int i = 0; i < list.node_count; ++i)
+    for (int i = 0; i < list.count(); ++i)
+    {
+        node *n = list.get_node_at_index(i);
+        if (n != NULL)
+        {
+            std::cout << (n->previous != NULL ? n->previous->data.c : ' ') << " <- "
+                      << "[" << n->data.c << "]"
+                      << " -> " << (n->next != NULL ? n->next->data.c : ' ')
+                      << "\n";
+        }            
+    }
+}
+
+void display_linkedlist_content_name(linkedlist list)
+{
+    std::cout << "Current linked list nodes: \n";
+    for (int i = 0; i < list.count(); ++i)
     {
         node *n = list.get_node_at_index(i);
         if (n != NULL)

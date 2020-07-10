@@ -7,6 +7,8 @@ namespace randydsa
 {
     struct lldata
     {
+        int n;
+        char c;
         std::string name;
     };
 }

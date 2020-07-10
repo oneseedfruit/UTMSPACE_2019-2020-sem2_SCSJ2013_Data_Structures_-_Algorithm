@@ -52,4 +52,51 @@ namespace randydsa
             pop();            
         }
     }
+
+    // Reusing linked list code, top and head are interchangeable
+    stack_linkedlist::stack_linkedlist()
+    {
+        
+    }
+
+    bool stack_linkedlist::is_empty() const
+    {
+        return stack.get_node_at_head() == NULL;
+    }
+
+    char stack_linkedlist::get_top() const
+    {
+        if (!is_empty())
+        {
+            node *top = stack.get_node_at_head();
+            return top->data.c;
+        }
+
+        return -1;
+    }
+
+    char stack_linkedlist::push(char c)
+    {
+        lldata l;
+        l.c = c;
+        node *n = new node(l);
+        stack.insert_node_at_head(n);
+        return c;
+    }
+
+    char stack_linkedlist::pop()
+    {
+        if (!is_empty())
+        {
+            node *top = stack.get_node_at_head();
+            return stack.remove_node(top)->data.c;
+        }
+
+        return -1;
+    }
+
+    void stack_linkedlist::free_memory()
+    {
+        stack.free_memory();
+    }
 }
