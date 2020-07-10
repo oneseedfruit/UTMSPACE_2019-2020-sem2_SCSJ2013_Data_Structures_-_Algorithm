@@ -5,6 +5,7 @@
 #include "linkedlist/node.hpp"
 #include "linkedlist.hpp"
 #include "stack.hpp"
+#include "queue.hpp"
 using randydsa::sort;
 using randydsa::search;
 using randydsa::lldata;
@@ -12,6 +13,8 @@ using randydsa::node;
 using randydsa::linkedlist;
 using randydsa::stack_array;
 using randydsa::stack_linkedlist;
+using randydsa::queue_array;
+using randydsa::queue_linkedlist;
 
 void display_linkedlist_content_char(linkedlist);
 void display_linkedlist_content_name(linkedlist);
@@ -163,8 +166,7 @@ int main(int argc, char **argv)
     std::cout << stackll.get_top();
     std::cout << stackll.get_top();
     std::cout << stackll.get_top();
-
-    std::cout << "\n";
+    std::cout << "\nIs stack empty? " << stackll.is_empty() << "\n";
 
     std::cout << "Stack content popped out: ";
     while (!stackll.is_empty())
@@ -172,10 +174,36 @@ int main(int argc, char **argv)
         // Pop data from stack
         std::cout << stackll.pop();
     }
-    
-    std::cout << "\n";
+    std::cout << "\nIs stack empty? " << stackll.is_empty() << "\n";    
 
     stackll.free_memory();
+
+    std::cout << "\n";
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Queue
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    queue_array queue_arr;
+
+    queue_arr.enqueue('r');
+    queue_arr.enqueue('a');
+    queue_arr.enqueue('t');
+    queue_arr.enqueue('h');
+    queue_arr.enqueue('a');
+    queue_arr.enqueue('l');
+    queue_arr.enqueue('o');
+    queue_arr.enqueue('s');
+    std::cout << queue_arr.get_front() << "\n";
+    std::cout << queue_arr.get_back() << "\n";
+
+    while (!queue_arr.is_empty())
+    {
+        std::cout << "\n";
+        std::cout << queue_arr.get_front() << "\n";
+        std::cout << queue_arr.get_back() << "\n";
+        queue_arr.dequeue();
+    }
 
     return 0;
 }

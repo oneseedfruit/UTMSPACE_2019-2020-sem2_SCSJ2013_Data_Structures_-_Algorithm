@@ -18,7 +18,7 @@ namespace randydsa
         node *insert_node(node *);
         node *insert_node_at_head(node *);
         node *remove_node(node *, bool freemem = false);
-        node *remove_node_at_index(int);
+        node *remove_node_at_index(int, bool freemem = false);
         node *get_node_at_index(int) const;
         node *get_node_at_head() const;
         int get_index_of_node(node *) const;

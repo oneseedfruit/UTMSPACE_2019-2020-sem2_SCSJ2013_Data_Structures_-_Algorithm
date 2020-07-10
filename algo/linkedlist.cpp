@@ -55,6 +55,7 @@ namespace randydsa
     {
         if (_node->previous == NULL && _node->next == NULL)
         {
+            delete head;
             head = NULL;
             --node_count;
 
@@ -63,12 +64,13 @@ namespace randydsa
                 delete _node;
                 _node = NULL;
             }
-            return _node;            
+            return _node;
         }
 
         if (_node->previous == NULL)
         {
             head = _node->next;
+            delete head->previous;
             head->previous = NULL;
             --node_count;
 
@@ -82,6 +84,7 @@ namespace randydsa
 
         if (_node->next == NULL)
         {
+            delete _node->previous->next;
             _node->previous->next = NULL;
             --node_count;
 
@@ -100,19 +103,17 @@ namespace randydsa
         nextNode->previous = prevNode;
 
         --node_count;
-
-        if (freemem)
-        {
-            delete _node;
-            _node = NULL;
-        }
+        
+        delete _node;
+        _node = NULL;
+        
         return _node;
     }
 
-    node *linkedlist::remove_node_at_index(int index)
+    node *linkedlist::remove_node_at_index(int index, bool freemem)
     {
         node *_node = get_node_at_index(index);        
-        return remove_node(_node);
+        return remove_node(_node, freemem);
     }    
 
     node *linkedlist::get_node_at_index(int index) const

@@ -53,7 +53,7 @@ namespace randydsa
         }
     }
 
-    // Reusing linked list code, top and head are interchangeable
+    // Reusing linked list code, "top" and "head" are interchangeable
     stack_linkedlist::stack_linkedlist()
     {
         
@@ -89,7 +89,9 @@ namespace randydsa
         if (!is_empty())
         {
             node *top = stack.get_node_at_head();
-            return stack.remove_node(top)->data.c;
+            char c = top->data.c;
+            stack.remove_node(top);
+            return c;
         }
 
         return -1;
