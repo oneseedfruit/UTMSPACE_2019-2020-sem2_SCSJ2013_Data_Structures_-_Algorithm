@@ -54,7 +54,8 @@ namespace randydsa
     //                                                            while the other half is simply discarded (not needed anymore)
     //                repeat until searched == the current middle)
     //
-    // All Cases: log<sub>2</sub>n
+    // Worst Case: log<sub>2</sub>n     // if searched is not found, split array in half
+    // Best Case: O(1)                  // if searched is found at the start, no need to split anything
 
     // Works on (ascendingly) sorted data only!
     int search::binary_search_sorted(int search_for, int data[], int count)
