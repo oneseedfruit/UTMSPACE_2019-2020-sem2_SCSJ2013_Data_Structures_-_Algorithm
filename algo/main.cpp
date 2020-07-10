@@ -1,27 +1,42 @@
 #include <iostream>
-#include "sort/sort.hpp"
+#include "sort.hpp"
+#include "search.hpp"
 using randydsa::sort;
+using randydsa::search;
 
 int main(int argc, char **argv)
 {
     const int count = 10;
-    int data_set[count] = { 10, 9, 20, 21, 4, 99, 6, 100, 1, 5 };
+    int data[count] = { 10, 9, 20, 21, 4, 6, 100, 1, 5, 99 };
     
-    std::cout << "Unsorted: ";
+    std::cout << "Data set: ";
     for (int i = 0; i < count; ++i)
     {
-        std::cout << data_set[i] << " ";
+        std::cout << data[i] << " ";
     }
-    std::cout << "\n";
+    std::cout << "\n\n";
 
-    sort::insertion_sort(data_set, count);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Sort
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    std::cout << "Sorted: ";
+    sort::insertion_sort(data, count);
+
+    std::cout << "Data set (sorted): ";
     for (int i = 0; i < count; ++i)
     {
-        std::cout << data_set[i] << " ";
+        std::cout << data[i] << " ";
     }
-    std::cout << "\n";
+    std::cout << "\n\n";
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Search
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    int search_for_this = 100;
+    int found_at = search::sequential_search_unsorted(search_for_this, data, count);
+
+    std::cout << search_for_this << " found at index " << found_at << " (zero indexed).\n\n";
 
     return 0;
 }
