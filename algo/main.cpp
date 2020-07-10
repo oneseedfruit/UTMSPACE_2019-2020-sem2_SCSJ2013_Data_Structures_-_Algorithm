@@ -72,7 +72,7 @@ int main(int argc, char **argv)
     // Insert nodes
     list.insert_node(node1_deviljho);
     list.insert_node(node2_brachydios);
-    list.insert_node(node3_tigrex);
+    list.insert_node_at_head(node3_tigrex);
     list.insert_node(node4_zinogre);
     list.insert_node(node5_glavenus);
     
@@ -105,6 +105,8 @@ int main(int argc, char **argv)
     }
     
     std::cout << "\n";
+
+    list.free_memory();
 
     return 0;
 }

@@ -16,25 +16,32 @@ namespace randydsa
     node *linkedlist::insert_node(node *_node)
     {
         if (head == NULL)
-        {
-            _node->next = head;
-            head = _node;
-            ++node_count;
-            return _node;
+        {            
+            return insert_node_at_head(_node);
         }
         
         node *currentNode = head;
         node *previousNode = NULL;
 
-        while (currentNode != NULL /* && insert comparison condition here to insert ascendingly/descendingly */)
+        while (currentNode != NULL /* && comparison condition here to insert ascendingly/descendingly */)
         {
             previousNode = currentNode;
             currentNode = currentNode->next;
-        }        
+        }
 
         _node->next = previousNode->next;
         _node->previous = previousNode;
         previousNode->next = _node;
+        ++node_count;
+        return _node;
+    }
+
+    node *linkedlist::insert_node_at_head(node *_node)
+    {
+        if (head != NULL)
+            head->previous = _node;
+        _node->next = head;
+        head = _node;        
         ++node_count;
         return _node;
     }
@@ -75,7 +82,7 @@ namespace randydsa
         nextNode->previous = prevNode;
 
         --node_count;
-        
+
         if (freemem)
         {
             delete _node;
@@ -117,5 +124,18 @@ namespace randydsa
         }
 
         return -1;
+    }
+
+    void linkedlist::free_memory()
+    {
+        for (int i = 0; i < node_count; ++i)
+        {
+            node *n = get_node_at_index(i);
+            if (n != NULL)
+            {
+                delete n;
+                n = NULL;
+            }
+        }
     }
 }
