@@ -6,6 +6,7 @@
 #include "linkedlist.hpp"
 #include "stack.hpp"
 #include "queue.hpp"
+#include "bst.hpp"
 using randydsa::sort;
 using randydsa::search;
 using randydsa::lldata;
@@ -15,6 +16,7 @@ using randydsa::stack_array;
 using randydsa::stack_linkedlist;
 using randydsa::queue_array;
 using randydsa::queue_linkedlist;
+using randydsa::bst;
 
 void display_linkedlist_content_char(linkedlist);
 void display_linkedlist_content_name(linkedlist);
@@ -226,6 +228,36 @@ int main(int argc, char **argv)
                   << "; Calling dequeue()... Dequeued: " << queue_arr.dequeue() << "\n";        
     }
     std::cout << "Is queue empty? " << queue_arr.is_empty() << "\n";
+
+    std::cout << "\n";
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Binary Search Tree
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    bst bstree;
+
+    std::cout << "=====================\n";
+    std::cout << "Binary Search Tree: \n";
+    std::cout << "=====================\n\n";
+
+    bstree.insert('a');
+    bstree.insert('d');
+    bstree.insert('b');
+    bstree.insert('f');
+    bstree.insert('c');
+
+    bool is_found = false;
+
+    char find = 'z';
+    bstree.try_find(find, is_found);
+    std::cout << "Is \'" << find << "\' in the tree? " << is_found;
+    
+    std::cout << "\n";
+    
+    find = 'c';
+    bstree.try_find(find, is_found);
+    std::cout << "Is \'" << find << "\' in the tree? " << is_found;
 
     std::cout << "\n";
 
